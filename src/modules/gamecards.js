@@ -27,7 +27,6 @@ function processCSV(text) {
     renderCards(gameList);
 }
 
-importCSV();
 function renderCards(games) {
     let gameId = games.length + 1;
     games.forEach((game, index) => {

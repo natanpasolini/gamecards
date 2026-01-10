@@ -1,4 +1,5 @@
 import { importCSV, useObserver } from './src/modules/gamecards.js';
+import { injectModals } from './src/modules/modals.js';
 
 function filterCards(platform, year) {
     platform = platform.toLowerCase();
@@ -51,8 +52,10 @@ async function getLastCommit() {
     }
 }
 
-getLastCommit();
-
 document.getElementById('github').addEventListener('click', () => {
     window.open('https://github.com/natanpasolini/gamelist');
 });
+
+importCSV();
+getLastCommit();
+injectModals();
