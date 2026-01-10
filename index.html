@@ -2,21 +2,21 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./styles.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Micro+5&family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackernoon/pixel-icon-library/fonts/iconfont.css">
 </head>
-<body class="relative">
+<body class="relative overflow-scroll overflow-visible">
     <header class="flex justify-center items-center min-h-[200px] w-full bg-stone-900">
-        <h1 class="text-[72px] title font-silkscreen">Naga's Gamelist</h1>
+        <h1 class="text-[40px] md:text-[72px] title font-silkscreen text-center">Naga's Gamelist</h1>
     </header>
 
     <!-- sticky toolbar -->
     <navbar>
-        <div class="flex flex-row justify-between p-4 gap-6 w-full sticky top-0 absolute bg-neutral-800 z-10 box-shadow border border-neutral-700">
+        <div class="flex flex-col md:flex-row justify-between p-4 gap-6 w-full sticky top-0 absolute bg-neutral-800 z-10 box-shadow border border-neutral-700">
             <div class="flex flex-row justify-start gap-4 rounded-xl px-3 hover:bg-neutral-700 cursor-pointer" id="github">
                 <div class="flex justify-center items-center">
                     <i class="hn hn-github text-white text-[36px]"></i>
