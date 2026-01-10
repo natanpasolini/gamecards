@@ -1,10 +1,7 @@
 @import url("./css/output.css");
 @import url("./css/templates.css");
 @import "tailwindcss";
-
-.gamecard-bg {
-    background: radial-gradient(circle,rgba(93, 42, 155, 1) 0%, rgba(57, 17, 74, 1) 100%);
-}
+@plugin "@designbycode/tailwindcss-text-stroke";
 
 .font-micro-5 {
   font-family: "Micro 5", sans-serif;
