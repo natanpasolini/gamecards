@@ -8,7 +8,7 @@ const modalGuia = `
             </div>
             <div class="flex flex-col gap-4 py-2">
                 <p class="font-pixelify-sans text-md">
-                    Os jogos são catalógados com o ano, a plataforma, horas e as conquistas quando foi zerado. Por fim, há uma nota que eu atribui ao jogo.
+                    Os jogos são catalogados com o ano, a plataforma, horas e as conquistas quando foi zerado. Por fim, há uma nota que eu atribui ao jogo.
                 </p>
                 <div class="grid grid-cols-2 w-full">
                     <div class="flex flex-col items-start pt-1 border-2 border-black gap-1 bg-black">

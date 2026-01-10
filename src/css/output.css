@@ -11,7 +11,10 @@
     --color-red-800: oklch(44.4% 0.177 26.899);
     --color-yellow-300: oklch(90.5% 0.182 98.111);
     --color-purple-200: oklch(90.2% 0.063 306.703);
+    --color-neutral-200: oklch(92.2% 0 0);
+    --color-neutral-300: oklch(87% 0 0);
     --color-neutral-500: oklch(55.6% 0 0);
+    --color-neutral-600: oklch(43.9% 0 0);
     --color-neutral-700: oklch(37.1% 0 0);
     --color-neutral-800: oklch(26.9% 0 0);
     --color-stone-500: oklch(55.3% 0.013 58.071);
@@ -1485,6 +1488,12 @@
   .text-\[12px\] {
     font-size: 12px;
   }
+  .text-\[24px\] {
+    font-size: 24px;
+  }
+  .text-\[32px\] {
+    font-size: 32px;
+  }
   .text-\[36px\] {
     font-size: 36px;
   }
@@ -1564,6 +1573,41 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-neutral-700);
+      }
+    }
+  }
+  .hover\:text-neutral-200 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-neutral-200);
+      }
+    }
+  }
+  .hover\:text-neutral-300 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-neutral-300);
+      }
+    }
+  }
+  .hover\:text-neutral-500 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-neutral-500);
+      }
+    }
+  }
+  .hover\:text-neutral-600 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-neutral-600);
+      }
+    }
+  }
+  .hover\:text-neutral-700 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-neutral-700);
       }
     }
   }
