@@ -1,0 +1,25 @@
+@import url("./output.css");
+@import url("./css/templates.css");
+
+.gamecard-bg {
+    background: radial-gradient(circle,rgba(93, 42, 155, 1) 0%, rgba(57, 17, 74, 1) 100%);
+}
+
+.font-micro-5 {
+  font-family: "Micro 5", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-silkscreen {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-pixelify-sans {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
