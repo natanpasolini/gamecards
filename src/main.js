@@ -1,7 +1,13 @@
-const meusJogos = [{ year: "2026", title: "Warhammer", img: "spacemarine2.jpg", hours: "20", achievements: "22", maxachievements: "50", platform: "steam", score: "S" }]
+const meusJogos = [{ year: "2026", title: "Warhammer 40k: Space Marine 2", img: "spacemarine2.jpg", hours: "20", achievements: "22", maxachievements: "50", platform: "steam", score: "S" }, { year: "2025", title: "Clair", img: "spacemarine2.jpg", hours: "57", achievements: "55", maxachievements: "55", platform: "steam", score: "SSS" }]
 
 meusJogos.forEach(jogo => {
     console.log(`Eu zerei o jogo: ${jogo.year} ${jogo.title} ${jogo.img} ${jogo.hours} ${jogo.achievements} ${jogo.maxachievements} ${jogo.platform} ${jogo.score}`);
+    if (jogo.platform !== 'steam' && jogo.platform != 'emulador') {
+        jogo.platform = 'technology';
+    }
+    else if (jogo.platform == 'emulador') {
+        jogo.platform = 'gaming';
+    }
     const gamecardHtml =
     `<div class="rounded-xl flex flex-col py-6 px-4 shadow-md max-w-[400px] gamecard-bg">
                     <div class="relative">
@@ -41,9 +47,9 @@ meusJogos.forEach(jogo => {
                             </div>
                             <div class="flex justify-center h-20">
                                 <div class="w-full p-2 flex justify-center items-center border-2 border-x-0 platform-${jogo.platform}">
-                                    <img src="./imgs/platforms/${jogo.platform}.png" class="object-contain max-w-12">
+                                    <i class="hn hn-${jogo.platform} text-3xl text-white"></i>
                                 </div>
-                                <div class="bg-yellow-300 p-2 flex justify-center items-center w-full border-2">
+                                <div class="p-2 flex justify-center items-center w-full border-2 score-${jogo.score}">
                                     <span class="text-3xl font-pixelify-sans">
                                         ${jogo.score}
                                     </span>

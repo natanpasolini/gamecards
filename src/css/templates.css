@@ -1,3 +1,19 @@
 .platform-steam {
     background: linear-gradient(180deg,rgba(10, 27, 64, 1) 0%, rgba(20, 45, 96, 1) 52%, rgba(19, 129, 178, 1) 100%);
 }
+
+.platform-technology {
+    background: black;
+}
+
+.platform-gaming {
+    background: #9c27b0;
+}
+
+.score-S {
+    background: #f50057;
+}
+
+.score-SSS {
+    background: #ffd700;
+}
