@@ -34,6 +34,10 @@ function renderizarCards(jogos) {
         let platformicon = jogo.platform;
         let gamecardColor = 'purple';
         let gamecardTextColor = 'white';
+        let achievements = `${jogo.achievements}/${jogo.maxachievements}`
+        if (jogo.maxachievements == 'N/A') {
+            achievements = 'N/A';
+        }
         if (jogo.steamid != null) {
             jogo.img = `https://cdn.cloudflare.steamstatic.com/steam/apps/${jogo.steamid}/header.jpg`
         }
@@ -74,7 +78,7 @@ function renderizarCards(jogos) {
                                     <div class="flex justify-start items-center pl-2 gap-2">
                                         <i class="hn hn-trophy-solid text-yellow-300 text-3xl"></i>
                                         <span class="text-${gamecardTextColor} leading-none text-3xl font-micro-5" id="gamecard-achievements">
-                                            ${jogo.achievements}/${jogo.maxachievements}
+                                            ${achievements}
                                         </span>
                                     </div>
                                     <div class="flex justify-start items-center pl-2 gap-2">
