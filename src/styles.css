@@ -47,11 +47,6 @@
     animation: dropInEffect 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-.card-hidden:hover {
-    transform: scale(1.02) translateY(-5px) !important;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
-}
-
 .title {
   background: linear-gradient(#3b82f6 0%, #a855f7 100%);
   background-clip: border-box;

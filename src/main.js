@@ -1,35 +1,30 @@
-import { carregarDados, ativarObservador } from './modules/gamecards.js';
+import { importCSV, useObserver } from './modules/gamecards.js';
 
 function filterCards(platform, year) {
     platform = platform.toLowerCase();
     if (platform == 'all' && year == 'all') {
         document.querySelectorAll('[id*="gamecard"]').forEach(card => {
         card.classList.remove('hide');
-        card.classList.remove('card-visible');
     });
     } else if (platform == 'all' && year != 'all') {
         document.querySelectorAll(`[id*="${year}"]`).forEach(card => {
             card.classList.remove('hide');
-            card.classList.remove('card-visible');
         });
     } else {
         document.querySelectorAll('[id*="gamecard"]').forEach(card => {
             card.classList.add('hide');
-            card.classList.remove('card-visible');
         });
     if (year != 'all'){
         document.querySelectorAll(`[id*="${platform}-${year}"]`).forEach(card => {
             card.classList.remove('hide');
-            card.classList.remove('card-visible');
         });
     } else {
         document.querySelectorAll(`[id*="${platform}"]`).forEach(card => {
             card.classList.remove('hide');
-            card.classList.remove('card-visible');
         });
     }
     }
-    ativarObservador();
+    useObserver();
 }
 
 const handleFilterChange = () => {
@@ -40,3 +35,24 @@ const handleFilterChange = () => {
 
 document.getElementById('platform-filter').addEventListener('change', handleFilterChange);
 document.getElementById('year-filter').addEventListener('change', handleFilterChange);
+
+async function getLastCommit() {
+    try {
+        const url = 'https://api.github.com/repos/natanpasolini/gamelist/commits?per_page=1';
+        const feed = await fetch(url);
+        const data = await feed.json();
+        
+        if (data && data.length > 0) {
+            const shrink = data[0].sha.substring(0, 7);
+            document.getElementById('commit').textContent = `#${shrink}`;
+        }
+    } catch (error) {
+        console.error('Erro ao buscar commit:', error);
+    }
+}
+
+getLastCommit();
+
+document.getElementById('github').addEventListener('click', () => {
+    window.open('https://github.com/natanpasolini/gamelist');
+});

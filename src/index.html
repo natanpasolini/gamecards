@@ -9,17 +9,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Micro+5&family=Pixelify+Sans:wght@400..700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackernoon/pixel-icon-library/fonts/iconfont.css">
 </head>
-<body class="bg-neutral-900 relative">
-    <header class="flex justify-center items-center min-h-26 w-full bg-neutral-950">
-        <h1 class="text-[60px] title font-silkscreen">Naga's Gamelist</h1>
+<body class="relative">
+    <header class="flex justify-center items-center min-h-[200px] w-full bg-stone-900">
+        <h1 class="text-[72px] title font-silkscreen">Naga's Gamelist</h1>
     </header>
 
     <!-- sticky toolbar -->
     <navbar>
-        <div class="flex flex-row justify-between p-4 gap-6 w-full sticky top-0 absolute bg-neutral-900 z-10 box-shadow border border-neutral-800">
-            <div></div>
-            <div class="flex flex-row justify-center w-[265px] gap-4">
-                <div class="flex items-center rounded text-white relative w-[58%] group">
+        <div class="flex flex-row justify-between p-4 gap-6 w-full sticky top-0 absolute bg-neutral-800 z-10 box-shadow border border-neutral-700">
+            <div class="flex flex-row justify-start gap-4 rounded-xl px-3 hover:bg-neutral-700 cursor-pointer" id="github">
+                <div class="flex justify-center items-center">
+                    <i class="hn hn-github text-white text-[36px]"></i>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <strong id="commit" class="text-white font-silkscreen">oi</strong>
+                    <p class="text-[12px] font-pixelify-sans">Clique aqui para ver a última atualização do site!</p>
+                </div>
+            </div>
+            <div class="flex flex-row justify-center gap-4">
+                <div class="flex items-center rounded text-white relative w-[170px] group">
                     <select id="platform-filter" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full font-silkscreen">
                         <option value="all" disabled selected>Plataforma</option>
                         <option value="all">Todas</option>
@@ -30,7 +38,7 @@
                     </select>
                     <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-focus:rotate-180 transform transition"></i>
                 </div>
-                <div class="flex items-center rounded text-white relative flex-1">
+                <div class="flex items-center rounded text-white relative w-[100px]">
                     <select id="year-filter" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full font-silkscreen">
                         <option value="all" disabled selected>Ano</option>
                         <option value="all">Todos</option>
@@ -49,7 +57,7 @@
     </navbar>
 
     <!-- Seção com grid dos gamecards (os gamecards são adicionados pelo gamecards.js) -->
-    <section class="flex justify-center items-center my-10">
+    <section class="flex justify-center items-start py-10 bg-stone-900" style="min-height: 100vh;">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gamelist">
         </div>
     </section>
