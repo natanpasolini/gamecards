@@ -33,7 +33,7 @@ function renderizarCards(jogos) {
     jogos.forEach((jogo, index) => {
         jogo.platform = jogo.platform.toLowerCase();
         let platformicon = jogo.platform;
-        let gamecardColor = 'purple';
+        let gamecardColor = 'basic';
         let gamecardTextColor = 'white';
         let achievements = `${jogo.achievements}/${jogo.maxachievements}`;
         idJogo -= 1;
@@ -49,15 +49,12 @@ function renderizarCards(jogos) {
         else if (jogo.platform !== 'steam') {
             platformicon = 'technology';
         }
-        if (jogo.platform == 'gp') {
-            jogo.platform = 'xbox';
-        }
         if (jogo.achievements == jogo.maxachievements && jogo.maxachievements != 'N/A') {
             gamecardColor = 'gold';
             gamecardTextColor = 'gold';
         }
         const gamecardHtml =
-        `<div class="card-hidden rounded-xl flex flex-col py-6 px-4 shadow-md max-w-[400px] gamecard-bg-${gamecardColor}">
+        `<div class="card-hidden rounded-xl flex flex-col py-6 px-4 shadow-md max-w-[400px] gamecard-bg-${gamecardColor} backdrop-blur-md border gamecard-border-${gamecardColor} will-change-transform" id="gamecard-${jogo.platform}-${jogo.year}-${idJogo}">
                         <div class="flex justify-end w-full">
                             <span class="text-${gamecardTextColor} text-2xl leading-none font-silkscreen">
                                 #${idJogo}
@@ -87,13 +84,13 @@ function renderizarCards(jogos) {
                                 <div class="flex flex-col items-start pt-1 border-2 gap-1 bg-black">
                                     <div class="flex justify-start items-center pl-2 gap-2">
                                         <i class="hn hn-trophy-solid text-yellow-300 text-3xl"></i>
-                                        <span class="text-${gamecardTextColor} leading-none text-3xl font-micro-5 select-none" id="gamecard-achievements">
+                                        <span class="text-${gamecardTextColor} leading-none text-3xl font-micro-5 select-none">
                                             ${achievements}
                                         </span>
                                     </div>
                                     <div class="flex justify-start items-center pl-2 gap-2">
                                         <i class="hn hn-clock text-yellow-300 text-3xl"></i>
-                                        <span class="text-white leading-none text-3xl font-micro-5 select-none" id="gamecard-hours">
+                                        <span class="text-white leading-none text-3xl font-micro-5 select-none">
                                             ${jogo.hours}h
                                         </span>
                                     </div>
@@ -117,20 +114,17 @@ function renderizarCards(jogos) {
 }
 
 const observer = new IntersectionObserver((entries) => {
-    const visibleEntries = entries.filter(entry => entry.isIntersecting);
-
-    visibleEntries.forEach((entry, index) => {
+    const visible = entries.filter(e => e.isIntersecting);
+    
+    visible.forEach((entry, index) => {
         setTimeout(() => {
-            entry.target.classList.add('card-visible');
-            observer.unobserve(entry.target);
-        }, index * 200);
-    });
-}, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-});
+                entry.target.classList.add('card-visible');
+                observer.unobserve(entry.target); 
+            }, index * 100); 
+        });
+}, { threshold: 0.1, rootMargin: '100px' });
 
-function ativarObservador() {
+export function ativarObservador() {
     const cards = document.querySelectorAll('.card-hidden');
     cards.forEach(card => observer.observe(card));
 }

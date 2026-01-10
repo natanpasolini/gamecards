@@ -1,6 +1,5 @@
 @import url("./css/output.css");
 @import url("./css/templates.css");
-@import "tailwindcss";
 
 .font-micro-5 {
   font-family: "Micro 5", sans-serif;
@@ -32,6 +31,10 @@
     }
 }
 
+.hide {
+    display: none;
+}
+
 .card-hidden {
     opacity: 0;
     transform: translateY(-70px);
@@ -45,6 +48,18 @@
 }
 
 .card-hidden:hover {
-    transform: scale(1.02) translateY(-5px) !important; /* Sobe levemente */
+    transform: scale(1.02) translateY(-5px) !important;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+.title {
+  background: linear-gradient(#3b82f6 0%, #a855f7 100%);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+option {
+    border-color: white;
+    background-color: oklch(20.5% 0 0);
 }
