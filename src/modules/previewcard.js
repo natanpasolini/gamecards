@@ -1,9 +1,13 @@
 export const handlePreviewChange = () => {
     const title = document.getElementById('inputGameTitle').value;
     const year = document.getElementById('inputGameYear').value;
-    const ach = document.getElementById('inputGameAch').value;
+    let ach = document.getElementById('inputGameAch').value;
     const maxach = document.getElementById('inputGameMaxAch').value;
     let achievements = '';
+    if (ach < 0 || ach == '') {
+        ach = 0;
+        document.getElementById('inputGameAch').value = ach;
+    }
     if (maxach == '' || maxach == null || maxach == 0) {
         achievements = 'N/A';
     } else {
@@ -28,9 +32,19 @@ function previewCardChange(title,year,achievements,hours,score,img) {
     }
     if (year == '' || year == null) {
         year = 'ano';
+    } else if (Number(year) < 1900) {
+        year = 1900;
+        document.getElementById('inputGameYear').value = year;
+    } else if (Number(year) > 2099) {
+        year = 2099;
+        document.getElementById('inputGameYear').value = year;
     }
     if (hours == '' || hours == null) {
         hours = 'HORAS';
+    } else if (Number(hours) > 100000) {
+        hours = 100000;
+        document.getElementById('inputGameHours').value = hours;
+        hours += 'h';
     } else {
         hours += 'h';
     }

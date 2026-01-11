@@ -6,7 +6,7 @@ const patchNotes = [
             { type: 'FEATURE', text: '<b>Criador de Cards:</b> versão inicial do criador de cards.'},
             { type: 'FEATURE', text: '<b>Download/Upload:</b> sistema para salvamento e carregamento dos cards criados, usando um arquivo json.'},
             { type: 'FEATURE', text: '<b>Patch Notes:</b> melhoria do botão github para um botão de patch notes.'},
-            { type: 'UPDATE', text: '<b>Filtros:</b> removido filtro plataformas.'},
+            { type: 'UPDATE', text: '<b>Filtros:</b> desativado para melhorias.'},
             { type: 'BUGFIX', text: 'Diversos bugfixes.'}
         ]
     }

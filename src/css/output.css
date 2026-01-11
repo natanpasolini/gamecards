@@ -1928,6 +1928,11 @@
       rotate: 180deg;
     }
   }
+  .peer-disabled\:opacity-20 {
+    &:is(:where(.peer):disabled ~ *) {
+      opacity: 20%;
+    }
+  }
   .hover\:bg-neutral-700 {
     &:hover {
       @media (hover: hover) {
@@ -1950,6 +1955,11 @@
   .disabled\:text-stone-800 {
     &:disabled {
       color: var(--color-stone-800);
+    }
+  }
+  .disabled\:opacity-20 {
+    &:disabled {
+      opacity: 20%;
     }
   }
   .disabled\:shadow-none {

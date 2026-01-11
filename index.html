@@ -46,7 +46,7 @@
             </div>
             <div class="flex flex-row justify-end gap-4 flex-1">
                 <div class="flex items-center rounded text-white relative w-[100px]">
-                    <select id="year-filter" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full font-silkscreen">
+                    <select disabled id="year-filter" class="disabled:opacity-20 peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full font-silkscreen">
                         <option value="all" disabled selected>Ano</option>
                         <option value="all">Todos</option>
                         <option value="2026">2026</option>
@@ -57,7 +57,7 @@
                         <option value="2021">2021</option>
                         <option value="2020">2020</option>
                     </select>
-                    <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-focus:rotate-180 transform transition"></i>
+                    <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-disabled:opacity-20 peer-focus:rotate-180 transform transition"></i>
                 </div>
             </div>
         </div>
@@ -165,19 +165,19 @@
                         <h1 class="text-white font-silkscreen">Configurações</h1>
                         <div class="flex flex-row gap-4 rounded w-full">
                             <input type="text" required placeholder="TITULO" id="inputGameTitle" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
-                            <input type="text" minlength="4" maxlength="4" required placeholder="ANO" id="inputGameYear" class="min-w-0 w-[20%] border-b border-white font-silkscreen text-white outline-none">
+                            <input type="number" required min="1900" max="2099"  placeholder="ANO" id="inputGameYear" class="min-w-0 w-[20%] border-b border-white font-silkscreen text-white outline-none">
                         </div>
                         <div class="flex flex-col w-full">
                             <h1 class="text-white font-silkscreen">CONQUISTAS</h1>
                             <div class="flex flex-row gap-4 w-full">
-                                <input type="text" placeholder="ALCANÇADAS" id="inputGameAch" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
-                                <input type="text" placeholder="TOTAL" id="inputGameMaxAch" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                <input type="number" placeholder="ALCANÇADAS" id="inputGameAch" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                <input type="number" placeholder="TOTAL" id="inputGameMaxAch" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
                             </div>
                         </div>
                         <div class="flex flex-col w-full">
                             <h1 class="text-white font-silkscreen">HORAS & NOTA</h1>
                             <div class="flex flex-row gap-4 w-full">
-                                <input type="text" maxlength="6" placeholder="HORAS" id="inputGameHours" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                <input type="number" required min="1" max="100000" placeholder="HORAS" id="inputGameHours" class="flex-1 min-w-0 border-b border-white font-silkscreen text-white outline-none">
                                 <div class="flex items-center rounded text-white relative w-[170px] group">
                                     <select id="inputGameScore" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
                                         <option value="N/A" disabled selected>N/A</option>
