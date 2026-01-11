@@ -59,5 +59,4 @@ const modalGuia = `
 
 export function injectModals() {
     document.body.innerHTML += modalGuia;
-    document.getElementById('modalGuia').showModal();
 }
