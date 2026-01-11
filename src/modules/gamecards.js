@@ -77,7 +77,7 @@ function renderCards(games) {
                                     </div>
                                 </div>
                                 <div class="flex flex-col justify-center items-center h-full">
-                                    <div class="bg-black p-1 w-full flex justify-center items-center h-[60px]">
+                                    <div class="bg-transparent p-1 w-full flex justify-center items-center h-[60px]">
                                         <h1 class="text-${gamecardTextColor} text-center text-xl font-silkscreen">
                                             ${game.title}
                                         </h1>
