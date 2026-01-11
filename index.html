@@ -18,16 +18,18 @@
     <!-- Sticky toolbar -->
     <navbar>
         <div class="flex flex-col md:flex-row justify-between items-center p-4 gap-6 w-full sticky top-0 absolute bg-neutral-800 z-10 box-shadow border border-neutral-700">
-            <div class="flex flex-row justify-start gap-4 rounded-xl px-3 hover:bg-neutral-700 cursor-pointer" onclick="window.open('https://github.com/natanpasolini/gamelist')">
-                <div class="flex justify-center items-center">
-                    <i class="hn hn-github text-white text-[36px]"></i>
-                </div>
-                <div class="flex flex-col justify-center">
-                    <strong id="commit" class="text-white font-silkscreen">Carregando...</strong>
-                    <p class="text-[12px] font-pixelify-sans">Clique aqui para ver a última atualização do site!</p>
+            <div class="flex justify-start flex-1">
+                <div class="flex flex-row justify-center gap-4 rounded-xl px-3 hover:bg-neutral-700 cursor-pointer" onclick="modalPatchNotes.showModal()">
+                    <div class="flex justify-center items-center">
+                        <i class="hn hn-github text-white text-[36px]"></i>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <strong id="commit" class="text-white font-silkscreen">Carregando...</strong>
+                        <p class="text-[12px] font-pixelify-sans">Patch Notes & Github</p>
+                    </div>
                 </div>
             </div>
-            <div class="flex flex-row gap-2">
+            <div class="flex flex-row gap-2 justify-center flex-1">
                 <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" onclick="modalGuia.showModal()">
                     <i class="hn hn-question text-white text-[24px]"></i>
                 </div>
@@ -42,18 +44,7 @@
                     <input type="file" id="fileInputHandler" class="hidden" accept=".json">
                 </div>
             </div>
-            <div class="flex flex-row justify-center gap-4">
-                <div class="flex items-center rounded text-white relative w-[170px] group">
-                    <select id="platform-filter" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full font-silkscreen">
-                        <option value="all" disabled selected>Plataforma</option>
-                        <option value="all">Todas</option>
-                        <option value="switch">Switch</option>
-                        <option value="steam">Steam</option>
-                        <option value="epic">Epic</option>
-                        <option value="gp">Gamepass</option>
-                    </select>
-                    <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-focus:rotate-180 transform transition"></i>
-                </div>
+            <div class="flex flex-row justify-end gap-4 flex-1">
                 <div class="flex items-center rounded text-white relative w-[100px]">
                     <select id="year-filter" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full font-silkscreen">
                         <option value="all" disabled selected>Ano</option>
@@ -71,6 +62,25 @@
             </div>
         </div>
     </navbar>
+
+    <!-- Modal patch notes -->
+     <dialog id="modalPatchNotes" class="modal">
+        <div class="modal-box flex flex-col bg-neutral-800 border border-neutral-700 relative h-[80%] gap-2">
+            <i class="hn hn-window-close-solid text-red-600 absolute top-2 right-2 hover:text-red-800 cursor-pointer" onclick="modalPatchNotes.close()"></i>
+            <div class="flex flex-col w-full">
+                <h1 class="font-silkscreen font-bold text-lg">Patch notes</h1>
+            </div>
+            <span class="w-full h-[2px] rounded-full bg-neutral-500"></span>
+            <div class="flex flex-col gap-4 p-2 overflow-y-scroll flex-1" id="patchNotesBlocks">
+            </div>
+            <span class="w-full h-[2px] rounded-full bg-neutral-500"></span>
+            <div class="flex justify-center items-center">
+                <button type="button" class="flex justify-center items-center p-2 gamecard-bg-basic rounded-full" onclick="window.open('https://github.com/natanpasolini/gamelist')">
+                    <i class="hn hn-github text-white text-[32px]"></i>
+                </button> 
+            </div>
+        </div>
+     </dialog>
 
     <!-- Modal aviso de upload -->
     <dialog id="modalAvisoUpload" class="modal">
