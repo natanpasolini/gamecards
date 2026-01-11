@@ -1,6 +1,6 @@
 const modalGuia = `
 <dialog class="modal" id="modalGuia">
-        <div class="modal-box bg-neutral-800 border border-neutral-700 flex flex-col gap-2 relative max-h-[85dvh]">
+        <div class="modal-box bg-neutral-800 border border-neutral-700 flex flex-col gap-2 relative max-h-[70dvh]">
             <i class="hn hn-window-close-solid text-red-600 absolute top-2 right-2 hover:text-red-800 cursor-pointer" onclick="modalGuia.close()"></i>
             <div class="flex flex-col w-full">
                 <h1 class="font-silkscreen font-bold text-lg">Guia do Usuário</h1>
