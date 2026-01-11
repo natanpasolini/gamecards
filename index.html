@@ -93,6 +93,17 @@
         </div>
     </dialog>
 
+    <!-- Modal erro de upload -->
+     <dialog id="modalErroUpload" class="modal">
+        <div class="flex flex-col justify-center items-center gap-4">
+            <div class="alert alert-error max-w-[400px] md:max-w-full">
+                <i class="hn hn-times-circle"></i>
+                <span class="font-silkscreen">Erro: Arquivo JSON inválido ou corrompido!</span>
+            </div>
+            <button class="btn btn-error font-silkscreen w-[100px] h-[30px]" onclick="modalErroUpload.close()">ops!</button>
+        </div>
+    </dialog>
+
     <!-- Criador de Cards -->
     <dialog class="modal" id="modalTest">
         <div class="flex flex-col bg-neutral-800 border border-neutral-700 rounded-lg p-5 relative">

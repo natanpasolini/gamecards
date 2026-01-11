@@ -52,6 +52,17 @@ const modalGuia = `
                         </span>
                     </div>
                 </div>
+                <p class="font-pixelify-sans text-md">
+                    Você pode salvar seus cards apertando o botão de download na toolbar. E pode carregar apertando o botão de upload.
+                </p>
+                <div class="alert alert-info">
+                    <i class="hn hn-info-circle-solid"></i>
+                    <span class="font-silkscreen text-xs">Esta é uma versão beta incompleta para testes, espere erros!</span>
+                </div>
+                <div class="alert alert-warning">
+                    <i class="hn hn-exclamation-triangle-solid"></i>
+                    <span class="font-silkscreen text-xs">Recarregar a página exclui TODOS os seus cards!</span>
+                </div>
             </div>
         </div>
     </dialog>

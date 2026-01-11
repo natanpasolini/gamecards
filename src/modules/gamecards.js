@@ -1,13 +1,5 @@
 import { useObserver } from "./observer.js";
 
-export async function importCSV() {
-    const url = "src/csv/games.csv";
-    const feedback = await fetch(url);
-    const data = await feedback.text();
-    
-    processCSV(data);
-}
-
 export function buildCard(title,year,achievements,maxachievements,hours,score,imglink,golden) {
     hours += 'h';
     let textColor = 'white';

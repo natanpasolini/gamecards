@@ -1,6 +1,5 @@
 import { buildCard } from "./gamecards.js";
 
-const header = ['title','year','achievements','maxachievements','hours','score','imglink']
 export const data = [
 ];
 
@@ -71,6 +70,21 @@ export function uploadDB(event) {
     reader.onload = function(e) {
         try {
             const importedData = JSON.parse(e.target.result);
+
+            // Validação do arquivo
+            if (!Array.isArray(importedData)) {
+                throw new Error("O arquivo deve conter uma lista de jogos.");
+            }
+
+            if (importedData.length > 0) {
+                const requiredKeys = ['title','year','achievements','maxachievements','hours','score','imglink'];
+                importedData.forEach(game => {
+                    const hasAllKeys = requiredKeys.every(key => key in game);
+                    if (!hasAllKeys) {
+                        throw new Error("Estrutura do arquivo inválida (keys missing). Por favor verifique o arquivo.");
+                    }
+                })
+            }
             
             // Substituir array
             data.length = 0; // Limpa array
@@ -98,7 +112,7 @@ export function uploadDB(event) {
             fileInput.value = ''; 
 
         } catch (err) {
-            alert("Erro: Arquivo JSON inválido ou corrompido.");
+            document.getElementById('modalErroUpload').showModal();
             console.error(err);
         }
     };
