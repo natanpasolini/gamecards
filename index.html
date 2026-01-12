@@ -18,7 +18,7 @@
     <!-- Sticky toolbar -->
     <navbar>
         <div class="flex flex-col md:flex-row justify-between items-center p-4 gap-6 w-full sticky top-0 absolute bg-neutral-800 z-10 box-shadow border border-neutral-700">
-            <div class="flex justify-start flex-1">
+            <div class="flex justify-start items-center flex-1">
                 <div class="flex flex-row justify-center gap-4 rounded-xl px-3 hover:bg-neutral-700 cursor-pointer" onclick="modalPatchNotes.showModal()">
                     <div class="flex justify-center items-center">
                         <i class="hn hn-github text-white text-[36px]"></i>
@@ -28,14 +28,22 @@
                         <p class="text-[12px] font-pixelify-sans">Patch Notes & Github</p>
                     </div>
                 </div>
-            </div>
-            <div class="flex flex-row gap-2 justify-center flex-1">
                 <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" onclick="modalGuia.showModal()">
                     <i class="hn hn-question text-white text-[24px]"></i>
                 </div>
-                <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" onclick="modalTest.showModal()">
+            </div>
+            <div class="flex flex-row gap-2 justify-center flex-1">
+                <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" onclick="modalCardCreator.showModal()">
                     <i class="hn hn-plus-solid text-white text-[24px]"></i>
                 </div>
+                <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" onclick="updateMouseState('trash')">
+                    <i class="hn hn-trash-alt-solid text-white text-[24px]" id="mousetrash"></i>
+                </div>
+                <div class="opacity-20 flex items-center justify-center rounded-full w-[36px] h-[36px]">
+                    <i class="hn hn-pencil-solid text-white text-[24px]"></i>
+                </div>
+            </div>
+            <div class="flex flex-row justify-end gap-4 flex-1">
                 <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" id="downloadDB">
                     <i class="hn hn-download-solid text-white text-[24px]"></i>
                 </div>
@@ -43,9 +51,7 @@
                     <i class="hn hn-upload-solid text-white text-[24px]"></i>
                     <input type="file" id="fileInputHandler" class="hidden" accept=".json">
                 </div>
-            </div>
-            <div class="flex flex-row justify-end gap-4 flex-1">
-                <div class="flex items-center rounded text-white relative w-[100px]">
+                <div class="flex items-center rounded text-white relative w-[100px] hide">
                     <select disabled id="year-filter" class="disabled:opacity-20 peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full font-silkscreen">
                         <option value="all" disabled selected>Ano</option>
                         <option value="all">Todos</option>
@@ -75,8 +81,8 @@
             </div>
             <span class="w-full h-[2px] rounded-full bg-neutral-500"></span>
             <div class="flex justify-center items-center">
-                <button type="button" class="flex justify-center items-center p-2 gamecard-bg-basic rounded-full" onclick="window.open('https://github.com/natanpasolini/gamelist')">
-                    <i class="hn hn-github text-white text-[32px]"></i>
+                <button type="button" class="btn gamecard-bg-basic gamecard-border-basic rounded-md p-2 font-silkscreen duration-200 cursor-pointer hover:bg-white hover:text-black hover:scale-105 active:scale-95" onclick="window.open('https://github.com/natanpasolini/gamelist')">
+                    github
                 </button> 
             </div>
         </div>
@@ -105,9 +111,9 @@
     </dialog>
 
     <!-- Criador de Cards -->
-    <dialog class="modal" id="modalTest">
+    <dialog class="modal" id="modalCardCreator">
         <div class="flex flex-col bg-neutral-800 border border-neutral-700 rounded-lg p-5 relative">
-            <i class="hn hn-window-close-solid text-red-600 absolute top-2 right-2 hover:text-red-800 cursor-pointer" onclick="modalTest.close()"></i>
+            <i class="hn hn-window-close-solid text-red-600 absolute top-2 right-2 hover:text-red-800 cursor-pointer" onclick="modalCardCreator.close()"></i>
             <div class="flex flex-col gap-2 mb-2">
                 <div class="font-silkscreen text-lg">NOVO JOGO</div>
                 <span class="w-full h-[2px] gamecard-bg-basic rounded-full"></span>
@@ -171,7 +177,7 @@
                     <div></div>
                     <div></div>
                 </div>
-                <div class="w-[400px] h-[400px]">
+                <div class="w-[295px] lg:w-[400px]">
                     <form class="flex flex-col gap-4 h-full"  id="cardCreator">
                         <h1 class="text-white font-silkscreen">Configurações</h1>
                         <div class="flex flex-row gap-4 rounded w-full">
@@ -233,7 +239,7 @@
                 <div class="hover-3d">
                     <figure>
                         <div class="w-[295px] h-[295px] md:w-[350px] md:h-[350px] xl:w-[400px] xl:h-[400px] rounded-xl flex flex-col justify-center items-center pt-5 shadow-md backdrop-blur-md border border-neutral-700">
-                            <div class="flex justify-center items-center rounded-full border-neutral-700 bg-neutral-800 p-2" onclick="modalTest.showModal()">
+                            <div class="flex justify-center items-center rounded-full border-neutral-700 bg-neutral-800 p-2" onclick="modalCardCreator.showModal()">
                                 <i class="hn hn-plus-solid text-white text-xl"></i>
                             </div>
                             <h3 class="font-silkscreen select-none">Novo Jogo</h3>

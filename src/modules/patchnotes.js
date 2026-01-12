@@ -1,5 +1,13 @@
 const patchNotes = [
     {
+        version: '<b>BETA</b> 1.1.0',
+        vs: 'b110',
+        changes: [
+            { type: 'FEATURE', text: '<b>Lixeira:</b> removedor de cards.'},
+            { type: 'BUGFIX', text: 'Erro ao tentar criar um card novo após importar db.'}
+        ]
+    },
+    {
         version: '<b>BETA</b> 1.0.0',
         vs: 'b100',
         changes: [

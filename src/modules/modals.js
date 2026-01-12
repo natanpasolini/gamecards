@@ -69,6 +69,6 @@ const modalGuia = `
 `
 
 export function injectModals() {
-    document.body.innerHTML += modalGuia;
+    document.body.insertAdjacentHTML('beforeend', modalGuia);
     document.getElementById('modalGuia').showModal();
 }

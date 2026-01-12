@@ -39,7 +39,7 @@ function sendCardData(data) {
 
     cardsCreated += 1;
     cardsID += 1;
-    if (cardsCreated == 1) {
+    if (cardsCreated > 0) {
         document.getElementById('newGameCard').classList.add('hidden');
     };
     buildCard(title,year,achievements,maxachievements,hours,score,imglink,golden);
@@ -90,12 +90,10 @@ export function uploadDB(event) {
             data.length = 0; // Limpa array
             data.push(...importedData); // Adiciona os novos dados
 
-            // Limpar grid
-            const grid = document.querySelector('#gamelist');
-            grid.innerHTML = '';
-
             // Cria todos os cards novos
             data.forEach(game => {
+                cardsCreated += 1;
+                cardsID += 1;
                 buildCard(
                     game.title, 
                     game.year, 
@@ -108,6 +106,8 @@ export function uploadDB(event) {
             });
 
             console.log("Upload concluído com sucesso!");
+            document.getElementById('newGameCard').classList.add('hidden');
+            
             // Resetar input
             fileInput.value = ''; 
 
@@ -118,4 +118,23 @@ export function uploadDB(event) {
     };
 
     reader.readAsText(file);
+}
+
+export function refreshData() {
+    console.log(cardsCreated, cardsID);
+    // Limpar variaveis
+    cardsCreated = 0;
+    cardsID = -1;
+
+    // Cria todos os cards novos
+    for (let i = 0; i < data.length; i++) {
+        cardsCreated += 1;
+        cardsID += 1;
+    }
+    console.log(cardsCreated, cardsID);
+    if (cardsCreated > 0) {
+        document.getElementById('newGameCard').classList.add('hidden');
+    } else {
+        document.getElementById('newGameCard').classList.remove('hidden');
+    };
 }

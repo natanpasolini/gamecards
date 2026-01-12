@@ -3,7 +3,28 @@ import { writeToData, downloadDB, uploadDB, data } from './src/modules/handlerda
 import { handleFilterChange } from './src/modules/cardsfilter.js';
 import { handlePreviewChange } from './src/modules/previewcard.js';
 import { attPatches } from './src/modules/patchnotes.js';
+import { cardFunctions } from './src/modules/gamecards.js';
 
+/* mousestate */
+export let mouseState = 'default';
+
+function updateMouseState(type) {
+    if (mouseState == type) {
+        document.getElementById(`mouse${type}`).style.color = 'white';
+        mouseState = 'default';
+        document.body.style.cursor = 'default';
+    } else {
+        mouseState = type;
+        document.getElementById(`mouse${type}`).style.color = 'red';
+        document.body.style.cursor = `url('./src/imgs/cursor-${type}.svg'), crosshair`;
+    }
+}
+
+/* Sem isso não roda as funções */
+window.cardFunctions = cardFunctions;
+window.updateMouseState = updateMouseState;
+
+/* Pegar commit */
 async function getLastCommit() {
     try {
         const url = 'https://api.github.com/repos/natanpasolini/gamelist/commits?per_page=1';
@@ -19,9 +40,12 @@ async function getLastCommit() {
     }
 };
 
-getLastCommit();
-injectModals();
+/* Atualizar preview */
+document.querySelectorAll('[id*="inputGame"]').forEach(input => {
+    input.addEventListener('change', handlePreviewChange);
+});
 
+/* Criador de cards */
 document.getElementById('cardCreator').addEventListener('submit', (event) => {
     event.preventDefault();
     let t = document.getElementById('inputGameTitle').value;
@@ -35,16 +59,13 @@ document.getElementById('cardCreator').addEventListener('submit', (event) => {
     event.target.reset();
 });
 
-document.querySelectorAll('[id*="inputGame"]').forEach(input => {
-    input.addEventListener('change', handlePreviewChange);
-});
-
+/* Filtros */
 document.getElementById('year-filter').addEventListener('change', handleFilterChange);
 
+/* Download e Upload */
 document.getElementById('downloadDB').addEventListener('click', () => {
     downloadDB();
 });
-
 
 let avisoUpload = false;
 document.getElementById('uploadDB').addEventListener('click', () => {
@@ -59,4 +80,7 @@ document.getElementById('fileInputHandler').addEventListener('change', (event) =
     uploadDB(event);
 })
 
+/* Por ser um module, roda quando carrega a página */
+getLastCommit();
+injectModals();
 attPatches();

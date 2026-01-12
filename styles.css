@@ -59,3 +59,10 @@ option {
     border-color: white;
     background-color: oklch(20.5% 0 0);
 }
+
+.btn-pixel-action {
+    @apply gamecard-bg-basic gamecard-border-basic rounded-md p-2 
+           font-silkscreen duration-200 cursor-pointer 
+           hover:bg-white hover:text-black hover:scale-105 
+           active:scale-95 flex items-center justify-center;
+}
