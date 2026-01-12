@@ -67,8 +67,8 @@ const cardCreatorHtml = `<dialog class="modal" id="modalCardCreator">
                     <div></div>
                     <div></div>
                 </div>
-                <div class="w-[295px] lg:w-[400px]">
-                    <form class="flex flex-col gap-4 h-full"  id="cardCreator"> <!-- id para puxar atualização de preview -->
+                <div class="w-[400px] min-h-[400px] flex flex-col h-full">
+                    <form class="flex flex-1 flex-col gap-4 h-full"  id="cardCreator"> <!-- id para puxar atualização de preview -->
                         <h1 class="text-white font-silkscreen">Configurações</h1>
                         <div class="flex flex-row gap-4 rounded w-full">
                             <input type="text" required placeholder="TITULO" id="inputGameTitle" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
@@ -107,12 +107,8 @@ const cardCreatorHtml = `<dialog class="modal" id="modalCardCreator">
                                 <input type="text" placeholder="link da imagem" id="inputGameImg" class="min-w-0 w-full border-b border-white font-silkscreen text-white outline-none">
                             </div>
                         </div>
-                        <div class="flex justify-center items-center h-full">
+                        <div class="flex justify-center items-center flex-1">
                             <input type="submit" value="Criar Card" class="btn gamecard-bg-basic gamecard-border-basic rounded-md p-2 font-silkscreen duration-200 cursor-pointer hover:bg-white hover:text-black hover:scale-105 active:scale-95"></input>
-                        </div>
-                        <div class="alert alert-warning">
-                            <i class="hn hn-exclamation-triangle-solid"></i>
-                            <span class="font-silkscreen">Não há um sistema de edição de cards nesta versão!</span>
                         </div>
                     </form>
                 </div>

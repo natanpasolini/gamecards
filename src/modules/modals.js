@@ -59,10 +59,6 @@ const modalGuia = `
                     <i class="hn hn-info-circle-solid"></i>
                     <span class="font-silkscreen text-xs">Você pode exportar sua database pela toolbar!</span>
                 </div>
-                <div class="alert alert-warning">
-                    <i class="hn hn-exclamation-triangle-solid"></i>
-                    <span class="font-silkscreen text-xs">Esta é uma versão beta, e portanto, está sujeita a mudanças. É possivel que seu save corrompa em versões futuras!</span>
-                </div>
             </div>
         </div>
     </dialog>
