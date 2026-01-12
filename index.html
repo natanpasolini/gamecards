@@ -18,21 +18,15 @@
     <!-- Sticky toolbar -->
     <navbar>
         <div class="flex flex-col md:flex-row justify-between items-center p-4 gap-6 w-full sticky top-0 absolute bg-neutral-800 z-10 box-shadow border border-neutral-700">
-            <div class="flex justify-start items-center flex-1">
-                <div class="flex flex-row justify-center gap-4 rounded-xl px-3 hover:bg-neutral-700 cursor-pointer" onclick="modalPatchNotes.showModal()">
-                    <div class="flex justify-center items-center">
-                        <i class="hn hn-github text-white text-[36px]"></i>
-                    </div>
-                    <div class="flex flex-col justify-center">
-                        <strong id="commit" class="text-white font-silkscreen">Carregando...</strong>
-                        <p class="text-[12px] font-pixelify-sans">Patch Notes & Github</p>
-                    </div>
+            <div class="flex justify-start items-center gap-[15px] flex-1">
+                <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" onclick="modalPatchNotes.showModal()">
+                    <i class="hn hn-github text-white text-[32px]"></i>
                 </div>
                 <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" onclick="modalGuia.showModal()">
                     <i class="hn hn-question text-white text-[24px]"></i>
                 </div>
             </div>
-            <div class="flex flex-row gap-2 justify-center flex-1">
+            <div class="flex flex-row gap-2 justify-center gap-[15px] flex-1">
                 <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" onclick="modalCardCreator.showModal()">
                     <i class="hn hn-plus-solid text-white text-[24px]"></i>
                 </div>
@@ -43,7 +37,7 @@
                     <i class="hn hn-pencil-solid text-white text-[24px]"></i>
                 </div>
             </div>
-            <div class="flex flex-row justify-end gap-4 flex-1">
+            <div class="flex flex-row justify-end gap-[15px] flex-1">
                 <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" id="downloadDB">
                     <i class="hn hn-download-solid text-white text-[24px]"></i>
                 </div>
