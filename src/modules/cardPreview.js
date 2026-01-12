@@ -17,7 +17,7 @@ export const handlePreviewChange = () => {
         hours = 'HORAS'
     }
     const score = document.getElementById('inputGameScore').value;
-    const img = '/src/imgs/placeholder.webp';
+    const img = '../imgs/placeholder.webp';
     previewCardChange(title,year,achievements,hours,score,img);
 }
 
@@ -63,7 +63,7 @@ export function formValueFix() {
     }
 
     if (img == '' || img == null) {
-        img = '/src/imgs/placeholder.webp';
+        img = '../imgs/placeholder.webp';
     }
     if (!document.getElementById('modalCardEditor')) {
         previewCardChange(title,year,achievements,hours,score,img);
