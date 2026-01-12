@@ -1,12 +1,12 @@
 const modalGuia = `
-<dialog class="modal" id="modalGuia">
+<dialog class="modal outline-none" id="modalGuia">
         <div class="modal-box bg-neutral-800 border border-neutral-700 flex flex-col gap-2 relative max-h-[70dvh]">
             <i class="hn hn-window-close-solid text-red-600 absolute top-2 right-2 hover:text-red-800 cursor-pointer" onclick="modalGuia.close()"></i>
             <div class="flex flex-col w-full">
                 <h1 class="font-silkscreen font-bold text-lg">Guia do Usuário</h1>
             </div>
             <span class="w-full h-[2px] rounded-full bg-neutral-500"></span>
-            <div class="flex flex-col gap-4 overflow-y-scroll">
+            <div class="flex flex-col gap-4 overflow-y-scroll outline-none">
                 <p class="font-pixelify-sans text-md">
                     O card de novo jogo desaparece após criar um gamecard, porém há um botão na toolbar para criar outros.
                 </p>
