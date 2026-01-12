@@ -1,9 +1,19 @@
 const patchNotes = [
     {
+        version: '<b>BETA</b> 2.0.1',
+        vs: 'b201',
+        changes: [
+            { type: 'UPDATE', text: 'Você pode colocar uma casa decimal nas horas de jogo ex: 10,1h'},
+            { type: 'BUGFIX', text: 'Conquistas alcançadas não podem mais ser nulas.'},
+            { type: 'BUGFIX', text: 'Editor não permite conquistas alcançadas maiores que o máximo.'},
+            { type: 'BUGFIX', text: 'Imagem do placeholder desaparecendo.'}
+        ]
+    },
+    {
         version: '<b>BETA</b> 2.0.0',
         vs: 'b200',
         changes: [
-            { type: 'FEATURE', text: '<b>Editor</b> seus cards agora podem ser editados.'},
+            { type: 'FEATURE', text: '<b>Editor:</b> seus cards agora podem ser editados.'},
             { type: 'UPDATE', text: 'Preview de cards agora atualiza conforme você digita'}
         ]
     },

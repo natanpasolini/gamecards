@@ -84,7 +84,7 @@ const cardCreatorHtml = `<dialog class="modal" id="modalCardCreator">
                         <div class="flex flex-col w-full">
                             <h1 class="text-white font-silkscreen">HORAS & NOTA</h1>
                             <div class="flex flex-row gap-4 w-full">
-                                <input type="number" required min="1" max="100000" placeholder="HORAS" id="inputGameHours" class="flex-1 min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                <input type="number" step="0.1" required min="1" max="100000" placeholder="HORAS" id="inputGameHours" class="flex-1 min-w-0 border-b border-white font-silkscreen text-white outline-none">
                                 <div class="flex items-center rounded text-white relative w-[170px] group">
                                     <select id="inputGameScore" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
                                         <option value="N/A" disabled selected>N/A</option>
@@ -135,6 +135,9 @@ export function cardCreator() {
         if (ma < a) {
             alert('Maximo de conquistas menor que o alcançado!');
         } else {
+            if (ma > 0 && (a < 0 || a == '' || a == null)) {
+                a = 0;
+            }
             let h = document.getElementById('inputGameHours').value;
             let s = document.getElementById('inputGameScore').value;
             let i = document.getElementById('inputGameImg').value;

@@ -46,7 +46,7 @@ export function cardEditor(event) {
                         <div class="flex flex-col w-full">
                             <h1 class="text-white font-silkscreen">HORAS & NOTA</h1>
                             <div class="flex flex-row gap-4 w-full">
-                                <input type="number" required min="1" max="100000" placeholder="HORAS" id="inputGameHours" class="flex-1 min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                <input type="number" required step="0.1" min="1" max="100000" placeholder="HORAS" id="inputGameHours" class="flex-1 min-w-0 border-b border-white font-silkscreen text-white outline-none">
                                 <div class="flex items-center rounded text-white relative w-[170px] group">
                                     <select id="inputGameScore" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
                                         <option value="N/A" disabled selected>N/A</option>
@@ -94,15 +94,23 @@ export function cardEditor(event) {
     document.getElementById('modalCardEditor').showModal();
     document.getElementById('cardEditor').addEventListener('submit', (event) => {
         event.preventDefault();
-        saveEdit(cardData);
-        document.getElementById('modalCardEditor').remove();
-        refreshData();
-        event.target.reset();
+        let inputAch = document.getElementById('inputGameAch').value;
+        let inputMaxAch = document.getElementById('inputGameMaxAch').value;
+        if (inputMaxAch < inputAch) {
+            alert('Maximo de conquistas menor que o alcançado!');
+        } else {
+            if (inputMaxAch > 0 && (inputAch < 0 || inputAch == '' || inputAch == null)) {
+                inputAch = 0;
+            }
+            saveEdit(cardData);
+            document.getElementById('modalCardEditor').remove();
+            refreshData();
+            event.target.reset();
+        }
     });
 };
 
 function saveEdit(cardData) {
-    console.log(cardData,"original")
     cardData.title = document.getElementById('inputGameTitle').value;
     cardData.year = document.getElementById('inputGameYear').value;
     cardData.achievements = document.getElementById('inputGameAch').value;
@@ -110,5 +118,4 @@ function saveEdit(cardData) {
     cardData.hours = document.getElementById('inputGameHours').value;
     cardData.score = document.getElementById('inputGameScore').value;
     cardData.imglink = document.getElementById('inputGameImg').value;
-    console.log(cardData,"editado")
 }
