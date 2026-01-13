@@ -64,7 +64,12 @@ const modalGuia = `
     </dialog>
 `
 
+export let modalGuiaVisto = localStorage.getItem('modalGuiaVisto');
+
 export function injectModals() {
     document.body.insertAdjacentHTML('beforeend', modalGuia);
-    document.getElementById('modalGuia').showModal();
+    if (modalGuiaVisto != 'true') {
+        document.getElementById('modalGuia').showModal();
+        localStorage.setItem('modalGuiaVisto', true);
+    }
 }

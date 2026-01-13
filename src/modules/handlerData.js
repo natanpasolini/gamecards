@@ -1,4 +1,5 @@
 import { buildCard } from "./gamecards.js";
+import { modalGuiaVisto } from "./modals.js";
 
 export const data = [
 ];
@@ -160,6 +161,7 @@ export function refreshData() {
 
 function saveToLocalStorage() {
     localStorage.setItem('gamelist_db', JSON.stringify(data));
+    localStorage.setItem('modalGuiaVisto', modalGuiaVisto);
 }
 
 export function loadFromLocalStorage() {

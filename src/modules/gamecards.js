@@ -25,7 +25,7 @@ export function buildCard(uid,title,year,achievements,maxachievements,hours,scor
     <div class="flex flex-row justify-center items-center w-full gap-4 ${dropShadow}" id="gamecard" data-uid="${uid}" onclick="cardFunctions(event)">
                 <div class="hover-3d">
                     <figure>
-                        <div class="card-hidden rounded-xl flex flex-col py-6 px-4 shadow-md w-[295px] md:w-[350px] xl:w-[400px] gamecard-bg-${bgColor} backdrop-blur-md border gamecard-border-${bgColor}">
+                        <div class="card-hidden rounded-xl flex flex-col py-6 px-4 shadow-md w-[320px] md:w-[350px] lg:w-[400px] gamecard-bg-${bgColor} backdrop-blur-md border gamecard-border-${bgColor}" id="cardfundo">
                             <div class="relative">
                                 <div class="px-[6px] py- m-0 bg-black border border-white rounded flex justify-center items-center absolute -rotate-30 select-none top-1 -left-3">
                                     <span class="text-${textColor} text-2xl leading-none font-silkscreen">

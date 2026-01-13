@@ -11,7 +11,7 @@ const cardCreatorHtml = `<dialog class="modal" id="modalCardCreator">
             <div class="flex flex-row justify-center items-center md:gap-4">
                 <div class="hover-3d">
                     <figure>
-                        <div class="hidden md:flex rounded-xl flex-col py-6 px-4 shadow-md w-[400px] gamecard-bg-basic gamecard-border-basic backdrop-blur-md border">
+                        <div class="hidden md:flex rounded-xl flex-col py-6 px-4 shadow-md w-[400px] gamecard-bg-basic gamecard-border-basic backdrop-blur-md border" id="previewcardCard">
                             <div class="relative">
                                 <div class="px-[6px] py- m-0 bg-black border border-white rounded flex justify-center items-center absolute -rotate-30 select-none top-1 -left-3">
                                     <span class="text-white text-2xl leading-none font-silkscreen" id="previewcardYear">
@@ -67,7 +67,7 @@ const cardCreatorHtml = `<dialog class="modal" id="modalCardCreator">
                     <div></div>
                     <div></div>
                 </div>
-                <div class="w-[400px] min-h-[400px] flex flex-col h-full">
+                <div class="w-[295px] lg:w-[400px] min-h-[400px] flex flex-col h-full">
                     <form class="flex flex-1 flex-col gap-4 h-full"  id="cardCreator"> <!-- id para puxar atualização de preview -->
                         <h1 class="text-white font-silkscreen">Configurações</h1>
                         <div class="flex flex-row gap-4 rounded w-full">
@@ -85,7 +85,7 @@ const cardCreatorHtml = `<dialog class="modal" id="modalCardCreator">
                             <h1 class="text-white font-silkscreen">HORAS & NOTA</h1>
                             <div class="flex flex-row gap-4 w-full">
                                 <input type="number" step="0.1" required min="1" max="100000" placeholder="HORAS" id="inputGameHours" class="flex-1 min-w-0 border-b border-white font-silkscreen text-white outline-none">
-                                <div class="flex items-center rounded text-white relative w-[170px] group">
+                                <div class="flex flex-1 items-center rounded text-white relative min-w-[100px] max-w-[170px] group">
                                     <select id="inputGameScore" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
                                         <option value="N/A" disabled selected>NOTA</option>
                                         <option value="D">D</option>
@@ -98,6 +98,17 @@ const cardCreatorHtml = `<dialog class="modal" id="modalCardCreator">
                                     </select>
                                     <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-focus:rotate-180 transform transition"></i>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <div class="flex flex-row w-full items-center gap-2">
+                                <h1 class="text-white font-silkscreen">FUNDO</h1>
+                                <span class="border border-transparent w-[24px] h-[24px] md:hidden" id="previewcardCardMobile"></span>
+                            </div>
+                            <div class="flex flex-row gap-4 w-full">
+                                <input type="number" max="255" placeholder="RED" id="inputGameRed" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                <input type="number" max="255" placeholder="GREEN" id="inputGameGreen" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                <input type="number" max="255" placeholder="BLUE" id="inputGameBlue" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
                             </div>
                         </div>
                         <div class="flex flex-col w-full">

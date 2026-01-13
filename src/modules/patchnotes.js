@@ -1,5 +1,12 @@
 const patchNotes = [
     {
+        version: '<b>BETA</b> 2.3.0',
+        vs: 'b230',
+        changes: [
+            { type: 'UPDATE', text: '<b>GUIA:</b> Só aparece forçadamente uma única vez na sua tela.'}
+        ]
+    },
+    {
         version: '<b>BETA</b> 2.2.1',
         vs: 'b221',
         changes: [

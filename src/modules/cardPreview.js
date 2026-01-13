@@ -1,5 +1,7 @@
 export const handlePreviewChange = () => {
-    const title = document.getElementById('inputGameTitle').value;
+    let title = document.getElementById('inputGameTitle').value;
+    if (title == '' || title == null) title = 'TíTULO';
+
     let ach = document.getElementById('inputGameAch').value;
     let year = document.getElementById('inputGameYear').value;
     if (year == '' || year == null) {
@@ -12,13 +14,30 @@ export const handlePreviewChange = () => {
     } else {
         achievements = 'CONQUISTAS';
     }
+
     let hours = document.getElementById('inputGameHours').value;
-    if (hours == '' || hours == null) {
-        hours = 'HORAS'
-    }
+    if (hours == '' || hours == null) hours = 'HORAS';
+
     const score = document.getElementById('inputGameScore').value;
     const img = './src/imgs/placeholder.webp';
-    previewCardChange(title,year,achievements,hours,score,img);
+
+    const inputRed = document.getElementById('inputGameRed');
+    const inputGreen = document.getElementById('inputGameGreen');
+    const inputBlue = document.getElementById('inputGameBlue');
+    if (inputRed.value > 255) inputRed.value = 255; else if (inputRed.value < 0) inputRed.value = 0;
+    if (inputGreen.value > 255) inputGreen.value = 255; else if (inputGreen.value < 0) inputGreen.value = 0;
+    if (inputBlue.value > 255) inputBlue.value = 255; else if (inputBlue.value < 0) inputBlue.value = 0;
+
+    let r = inputRed.value;
+    let g = inputGreen.value;
+    let b = inputBlue.value;
+    if (r == '' || r == null) r = 0;
+    if (g == '' || g == null) g = 0;
+    if (b == '' || b == null) b = 0;
+
+    const rgb = {r,g,b};
+    console.log(rgb);
+    previewCardChange(title,year,achievements,hours,score,img,rgb);
 }
 
 export function formValueFix() {
@@ -29,6 +48,7 @@ export function formValueFix() {
     let hours = document.getElementById('inputGameHours').value;
     let score = document.getElementById('inputGameScore').value;
     let img = document.getElementById('inputGameImg').value;
+    let rgb = [document.getElementById('inputGameRed').value,document.getElementById('inputGameGreen').value,document.getElementById('inputGameBlue').value]
 
     let achievements = '';
     if (!(maxach == '' || maxach == null || maxach == 0)) {
@@ -66,11 +86,11 @@ export function formValueFix() {
         img = './src/imgs/placeholder.webp';
     }
     if (!document.getElementById('modalCardEditor')) {
-        previewCardChange(title,year,achievements,hours,score,img);
+        previewCardChange(title,year,achievements,hours,score,img,rgb);
     }
 }
 
-function previewCardChange(title,year,achievements,hours,score,img) {
+function previewCardChange(title,year,achievements,hours,score,img,rgb) {
     const previewTitle = document.getElementById('previewcardTitle');
     const previewAchievements = document.getElementById('previewcardAchievements');
     const previewYear = document.getElementById('previewcardYear');
@@ -78,6 +98,11 @@ function previewCardChange(title,year,achievements,hours,score,img) {
     const previewScore = document.getElementById('previewcardScore');
     const previewScoreBG = document.getElementById('previewcardScoreBG')
     const previewImg = document.getElementById('previewcardImg');
+    const previewBG = document.getElementById('previewcardCard');
+    const previewBGMobile = document.getElementById('previewcardCardMobile');
+    const r = rgb.r;
+    const b = rgb.b;
+    const g = rgb.g;
 
     previewTitle.innerHTML = title;
     previewYear.innerHTML = year;
@@ -94,4 +119,8 @@ function previewCardChange(title,year,achievements,hours,score,img) {
     });
     previewScoreBG.classList.add(`score-${score}`)
     previewImg.src = `${img}`;
+    previewBG.style.background = `radial-gradient(circle,rgba(${r}, ${g}, ${b}, 0.7) 0%, rgba(${Math.round(r * 0.4)}, ${Math.round(g * 0.4)}, ${Math.round(b * 0.4)}, 0.7) 100%)`;
+    previewBG.style.borderColor = `rgb(${r},${g},${b})`
+    previewBGMobile.style.background = `radial-gradient(circle,rgba(${r}, ${g}, ${b}, 0.7) 0%, rgba(${Math.round(r * 0.4)}, ${Math.round(g * 0.4)}, ${Math.round(b * 0.4)}, 0.7) 100%)`;
+    previewBGMobile.style.borderColor = `rgb(${r},${g},${b})`
 }
