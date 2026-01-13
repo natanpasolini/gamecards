@@ -3,6 +3,7 @@ const patchNotes = [
         version: '<b>BETA</b> 2.3.0',
         vs: 'b230',
         changes: [
+            { type: 'FEATURE', text: '<b>FUNDO PERSONALIZADO:</b> Agora você pode personalizar a cor de fundo dos seus gamecards! (compativel com gamecards criados anteriormente).'},
             { type: 'UPDATE', text: '<b>GUIA:</b> Só aparece forçadamente uma única vez na sua tela.'}
         ]
     },

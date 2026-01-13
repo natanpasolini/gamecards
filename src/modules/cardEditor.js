@@ -21,6 +21,7 @@ export function cardEditor(event) {
     const maxach = cardData.maxachievements;
     const score = cardData.score;
     const imglink = cardData.imglink;
+    const rgb = cardData.background;
 
     const cardEditorHtml = `<dialog class="modal" id="modalCardEditor">
         <div class="flex flex-col bg-neutral-800 border border-neutral-700 rounded-lg p-5 relative">
@@ -63,6 +64,17 @@ export function cardEditor(event) {
                             </div>
                         </div>
                         <div class="flex flex-col w-full">
+                            <div class="flex flex-row w-full items-center gap-2">
+                                <h1 class="text-white font-silkscreen">FUNDO</h1>
+                                <span class="border border-transparent w-[24px] h-[24px]" id="previewcardCardMobile"></span>
+                            </div>
+                            <div class="flex flex-row gap-4 w-full">
+                                <input type="number" max="255" placeholder="RED" id="inputGameRed" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                <input type="number" max="255" placeholder="GREEN" id="inputGameGreen" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                <input type="number" max="255" placeholder="BLUE" id="inputGameBlue" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                            </div>
+                        </div>
+                        <div class="flex flex-col w-full">
                             <h1 class="text-white font-silkscreen">IMAGEM</h1>
                             <div class="flex flex-row gap-4 w-full">
                                 <input type="text" placeholder="link da imagem" id="inputGameImg" class="min-w-0 w-full border-b border-white font-silkscreen text-white outline-none">
@@ -78,17 +90,23 @@ export function cardEditor(event) {
     </dialog>`
     document.body.insertAdjacentHTML('afterbegin', cardEditorHtml);
 
-    document.querySelectorAll('[id*="inputGame"]').forEach(input => {
-        input.addEventListener('change', formValueFix);
-    });
-
     document.getElementById('inputGameTitle').value = title;
     document.getElementById('inputGameYear').value = year;
     document.getElementById('inputGameAch').value = ach;
     document.getElementById('inputGameMaxAch').value = maxach;
     document.getElementById('inputGameHours').value = hours;
     document.getElementById('inputGameScore').value = score;
+    document.getElementById('inputGameRed').value = rgb[0];
+    document.getElementById('inputGameGreen').value = rgb[1];
+    document.getElementById('inputGameBlue').value = rgb[2];
     document.getElementById('inputGameImg').value = imglink;
+
+    previewNewColor();
+
+    document.querySelectorAll('[id*="inputGame"]').forEach(input => {
+        input.addEventListener('input', previewNewColor);
+        input.addEventListener('change', formValueFix);
+    });
     
     document.getElementById('modalCardEditor').showModal();
     document.getElementById('cardEditor').addEventListener('submit', (event) => {
@@ -109,6 +127,25 @@ export function cardEditor(event) {
     });
 };
 
+function previewNewColor() {
+    const previewColor = document.getElementById('previewcardCardMobile');
+
+    let inputRed = document.getElementById('inputGameRed');
+    let inputGreen = document.getElementById('inputGameGreen');
+    let inputBlue = document.getElementById('inputGameBlue');
+    
+    if (inputRed.value > 255) inputRed.value = 255;
+    if (inputGreen.value > 255) inputGreen.value = 255;
+    if (inputBlue.value > 255) inputBlue.value = 255;
+
+    const r = inputRed.value;
+    const g = inputGreen.value;
+    const b = inputBlue.value ;
+
+    previewColor.style.background = `radial-gradient(circle,rgba(${r}, ${g}, ${b}, 0.7) 0%, rgba(${Math.round(r * 0.4)}, ${Math.round(g * 0.4)}, ${Math.round(b * 0.4)}, 0.7) 100%)`;
+    previewColor.style.borderColor = `rgb(${r},${g},${b})`
+}
+
 function saveEdit(cardData) {
     cardData.title = document.getElementById('inputGameTitle').value;
     cardData.year = document.getElementById('inputGameYear').value;
@@ -117,4 +154,5 @@ function saveEdit(cardData) {
     cardData.hours = document.getElementById('inputGameHours').value;
     cardData.score = document.getElementById('inputGameScore').value;
     cardData.imglink = document.getElementById('inputGameImg').value;
+    cardData.background = [document.getElementById('inputGameRed').value,document.getElementById('inputGameGreen').value,document.getElementById('inputGameBlue').value];
 }
