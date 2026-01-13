@@ -36,7 +36,6 @@ export const handlePreviewChange = () => {
     if (b == '' || b == null) b = 0;
 
     const rgb = {r,g,b};
-    console.log(rgb);
     previewCardChange(title,year,achievements,hours,score,img,rgb);
 }
 
@@ -48,7 +47,16 @@ export function formValueFix() {
     let hours = document.getElementById('inputGameHours').value;
     let score = document.getElementById('inputGameScore').value;
     let img = document.getElementById('inputGameImg').value;
-    let rgb = [document.getElementById('inputGameRed').value,document.getElementById('inputGameGreen').value,document.getElementById('inputGameBlue').value]
+
+    let inputRed = document.getElementById('inputGameRed');
+    let inputGreen = document.getElementById('inputGameGreen');
+    let inputBlue = document.getElementById('inputGameBlue');
+    
+    if (inputRed.value == '' || inputRed.value == null) inputRed.value = 0;
+    if (inputGreen.value == '' || inputGreen.value == null) inputGreen.value = 0;
+    if (inputBlue.value == '' || inputBlue.value == null) inputBlue.value = 0;
+
+    const rgb = [inputRed.value,inputGreen.value,inputBlue.value];
 
     let achievements = '';
     if (!(maxach == '' || maxach == null || maxach == 0)) {

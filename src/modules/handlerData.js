@@ -4,7 +4,7 @@ import { modalGuiaVisto } from "./modals.js";
 export const data = [
 ];
 
-export function writeToData(t, y, a, ma, h, s, i) {
+export function writeToData(t, y, a, ma, h, s, i, rgb) {
     const uniqueId = Date.now() + i;
     const newEntry = {
         title: t,
@@ -14,6 +14,7 @@ export function writeToData(t, y, a, ma, h, s, i) {
         hours: h,
         score: s,
         imglink: i,
+        background: rgb,
         uid: uniqueId
     };
 
@@ -35,6 +36,7 @@ function sendCardData(data) {
     const hours = data[id].hours;
     const score = data[id].score;
     const imglink = data[id].imglink;
+    const background = data[id].background;
     let golden = false;
     if (Number(achievements) >= 0 && Number(achievements) > 0 && achievements == maxachievements) {
         golden = true;
@@ -46,7 +48,7 @@ function sendCardData(data) {
         document.getElementById('newGameCard').classList.add('hidden');
     };
     saveToLocalStorage();
-    buildCard(uid,title,year,achievements,maxachievements,hours,score,imglink,golden);
+    buildCard(uid,title,year,achievements,maxachievements,hours,score,imglink,background,golden);
 };
 
 export function downloadDB() {
@@ -102,6 +104,7 @@ export function uploadDB(event) {
             // Criar UniqueID
             for (let i = 0; i < data.length; i++) {
                 const uniqueId = Date.now() + i;
+                if (data[i].background == '' || data[i].background == null) data[i].background = [93, 42, 155];
                 data[i].uid = uniqueId;
             }
 
@@ -150,7 +153,8 @@ export function refreshData() {
                 game.maxachievements, 
                 game.hours, 
                 game.score, 
-                game.imglink
+                game.imglink,
+                game.background
             );
         });
     } else {
@@ -174,6 +178,7 @@ export function loadFromLocalStorage() {
         // Criar UniqueID
         for (let i = 0; i < data.length; i++) {
             const uniqueId = Date.now() + i;
+            if (data[i].background == '' || data[i].background == null) data[i].background = [93, 42, 155];
             data[i].uid = uniqueId;
         }
 
@@ -187,8 +192,9 @@ export function loadFromLocalStorage() {
                     game.achievements, 
                     game.maxachievements, 
                     game.hours, 
-                    game.score, 
-                    game.imglink
+                    game.score,
+                    game.imglink,
+                    game.background
                 );
             });
         refreshData();

@@ -3,11 +3,14 @@ import { mouseState } from "../../main.js";
 import { data, refreshData } from "./handlerData.js";
 import { cardEditor } from "./cardEditor.js";
 
-export function buildCard(uid,title,year,achievements,maxachievements,hours,score,imglink,golden) {
+export function buildCard(uid,title,year,achievements,maxachievements,hours,score,imglink,background,golden) {
     hours += 'h';
     let textColor = 'white';
     let bgColor = 'basic';
     let dropShadow = '';
+    let r = background[0];
+    let g = background[1];
+    let b = background[2];
     if (Number(achievements) < 0 || Number(maxachievements) <= 0) {
         achievements = 'N/A';
     } else {
@@ -21,11 +24,12 @@ export function buildCard(uid,title,year,achievements,maxachievements,hours,scor
         bgColor = 'gold';
         dropShadow = 'animate-drop-shadow-glow-gold';
     }
+    let bgCustom = `style="background: radial-gradient(circle,rgba(${r}, ${g}, ${b}, 0.7) 0%, rgba(${Math.round(r * 0.4)}, ${Math.round(g * 0.4)}, ${Math.round(b * 0.4)}, 0.7) 100%); border-color: rgb(${r},${g},${b});"`
     const templateHtml = `
     <div class="flex flex-row justify-center items-center w-full gap-4 ${dropShadow}" id="gamecard" data-uid="${uid}" onclick="cardFunctions(event)">
                 <div class="hover-3d">
                     <figure>
-                        <div class="card-hidden rounded-xl flex flex-col py-6 px-4 shadow-md w-[320px] md:w-[350px] lg:w-[400px] gamecard-bg-${bgColor} backdrop-blur-md border gamecard-border-${bgColor}" id="cardfundo">
+                        <div class="card-hidden rounded-xl flex flex-col py-6 px-4 shadow-md w-[320px] md:w-[350px] lg:w-[400px] gamecard-bg-${bgColor} backdrop-blur-md border gamecard-border-${bgColor}" ${bgCustom}>
                             <div class="relative">
                                 <div class="px-[6px] py- m-0 bg-black border border-white rounded flex justify-center items-center absolute -rotate-30 select-none top-1 -left-3">
                                     <span class="text-${textColor} text-2xl leading-none font-silkscreen">

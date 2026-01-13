@@ -82,26 +82,3 @@ document.getElementById('fileInputHandler').addEventListener('change', (event) =
 loadFromLocalStorage();
 injectModals();
 attPatches();
-
-/* testando */
-const testeRGB = document.getElementById('cardfundo').style;
-document.querySelectorAll("[id*='inputTeste']").forEach(input => {
-    input.addEventListener('input', () => {
-        let inputRed = document.getElementById('inputTesteR');
-        let inputGreen = document.getElementById('inputTesteG');
-        let inputBlue = document.getElementById('inputTesteB');
-        if (inputRed.value > 255) inputRed.value = 255; else if (inputRed.value < 0) inputRed.value = 0;
-        if (inputGreen.value > 255) inputGreen.value = 255; else if (inputGreen.value < 0) inputGreen.value = 0;
-        if (inputBlue.value > 255) inputBlue.value = 255; else if (inputBlue.value < 0) inputBlue.value = 0;
-
-        let r = inputRed.value;
-        let g = inputGreen.value;
-        let b = inputBlue.value;
-        if (r == '' || r == null) r = 0;
-        if (g == '' || g == null) g = 0;
-        if (b == '' || b == null) b = 0;
-
-        testeRGB.background = `radial-gradient(circle,rgba(${r}, ${g}, ${b}, 0.7) 0%, rgba(${Math.round(r * 0.4)}, ${Math.round(g * 0.4)}, ${Math.round(b * 0.4)}, 0.7) 100%)`;
-        testeRGB.borderColor = `rgba(${r}, ${g}, ${b}, 1)`
-    });
-});
