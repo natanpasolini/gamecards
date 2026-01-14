@@ -7,7 +7,7 @@
 }
 
 .gamecard-bg-gold {
-    background: linear-gradient(135deg, #b8860b 0%, #dfbe02 50%, #856404 100%) !important;
+    background: linear-gradient(135deg, hsl(43, 89%, 38%) 0%, #dfbe02 50%, #856404 100%) !important;
     border-color: #ffd700 !important;
 }
 
@@ -25,18 +25,22 @@
 
 .score-D {
   background: radial-gradient(circle, #D1D1D1 0%, #808080 60%, #404040 100%);
+  border-color: #D1D1D1;
 }
 
 .score-C {
   background: radial-gradient(circle, #B0C4DE 0%, #708090 60%, #2F4F4F 100%);
+  border-color: #B0C4DE;
 }
 
 .score-B {
   background: radial-gradient(circle, #A1C4FD 0%, #4A6984 70%, #1E2F3E 100%);
+  border-color: #A1C4FD;
 }
 
 .score-A {
   background: radial-gradient(circle, #00D2FF 0%, #0084A3 50%, #003D4D 100%);
+  border-color: #00D2FF;
 }
 
 .score-S {
@@ -49,6 +53,7 @@
 
 .score-SSS {
   background: radial-gradient(circle, #FF6B5A 0%, #D94A3A 50%, #5A1F1F 100%);
+  border-color: #FF6B5A;
   animation: sss-radial-pulse 2s infinite ease-in-out;
 }
 

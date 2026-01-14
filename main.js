@@ -14,7 +14,7 @@ window.cardEditor = cardEditor;
 /* mousestate */
 export let mouseState = 'default';
 
-function updateMouseState(type) {
+export function updateMouseState(type) {
     let coords = '0 0'
     let iconColor = 'red';
     if (mouseState == type) {

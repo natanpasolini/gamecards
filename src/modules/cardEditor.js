@@ -1,7 +1,9 @@
 import { data, refreshData } from "./handlerData.js";
 import { formValueFix } from "./cardPreview.js";
+import { mouseState, updateMouseState } from "../../main.js";
 
 export function cardEditor(event) {
+    if (mouseState != 'default') updateMouseState(mouseState);
     const card = event.currentTarget;
 
     const uniqueId = card.dataset.uid;
@@ -23,6 +25,7 @@ export function cardEditor(event) {
     const imglink = cardData.imglink;
     const imgstyle = cardData.imgstyle;
     const rgb = cardData.background;
+    let desc = cardData.desc;
 
     const cardEditorHtml = `<dialog class="modal" id="modalCardEditor">
         <div class="flex flex-col bg-neutral-800 border border-neutral-700 rounded-lg p-5 relative">
@@ -32,71 +35,79 @@ export function cardEditor(event) {
                 <span class="w-full h-[2px] bg-neutral-500 rounded-full"></span>
             </div>
                 <div class="w-[295px] lg:w-[400px]">
-                    <form class="flex flex-col gap-4 h-full" id="cardEditor">
+                    <form class="flex flex-col gap-4 max-h-[400px]" id="cardEditor">
                         <h1 class="text-white font-silkscreen">Configurações</h1>
-                        <div class="flex flex-row gap-4 rounded w-full">
-                            <input type="text" required placeholder="TITULO" id="inputGameTitle" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
-                            <input type="number" required min="1900" max="2099"  placeholder="ANO" id="inputGameYear" class="min-w-0 w-[20%] border-b border-white font-silkscreen text-white outline-none">
-                        </div>
-                        <div class="flex flex-col w-full">
-                            <h1 class="text-white font-silkscreen">CONQUISTAS</h1>
-                            <div class="flex flex-row gap-4 w-full">
-                                <input type="number" placeholder="ALCANÇADAS" id="inputGameAch" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
-                                <input type="number" placeholder="TOTAL" id="inputGameMaxAch" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                        <div class="flex flex-col gap-4 overflow-y-scroll outline-none py-1">
+                            <div class="flex flex-row gap-4 rounded w-full">
+                                <input type="text" required placeholder="TITULO" id="inputGameTitle" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                <input type="number" required min="1900" max="2099"  placeholder="ANO" id="inputGameYear" class="min-w-0 w-[20%] border-b border-white font-silkscreen text-white outline-none">
                             </div>
-                        </div>
-                        <div class="flex flex-col w-full">
-                            <h1 class="text-white font-silkscreen">HORAS & NOTA</h1>
-                            <div class="flex flex-row gap-4 w-full">
-                                <input type="number" required step="0.1" min="1" max="100000" placeholder="HORAS" id="inputGameHours" class="flex-1 min-w-0 border-b border-white font-silkscreen text-white outline-none">
-                                <div class="flex items-center rounded text-white relative w-[170px] group">
-                                    <select id="inputGameScore" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
-                                        <option value="N/A" disabled selected>NOTA</option>
-                                        <option value="D">D</option>
-                                        <option value="C">C</option>
-                                        <option value="B">B</option>
-                                        <option value="A">A</option>
-                                        <option value="S">S</option>
-                                        <option value="SS">SS</option>
-                                        <option value="SSS">SSS</option>
-                                    </select>
-                                    <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-focus:rotate-180 transform transition"></i>
+                            <div class="flex flex-col w-full">
+                                <h1 class="text-white font-silkscreen">CONQUISTAS</h1>
+                                <div class="flex flex-row gap-4 w-full">
+                                    <input type="number" placeholder="ALCANÇADAS" id="inputGameAch" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                    <input type="number" placeholder="TOTAL" id="inputGameMaxAch" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
                                 </div>
                             </div>
-                        </div>
-                        <div class="flex flex-col w-full">
-                            <div class="flex flex-row w-full items-center gap-2">
-                                <h1 class="text-white font-silkscreen">FUNDO</h1>
-                                <span class="border border-transparent w-[24px] h-[24px]" id="previewcardCardMobile"></span>
-                            </div>
-                            <div class="flex flex-row gap-4 w-full">
-                                <input type="number" max="255" placeholder="RED" id="inputGameRed" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
-                                <input type="number" max="255" placeholder="GREEN" id="inputGameGreen" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
-                                <input type="number" max="255" placeholder="BLUE" id="inputGameBlue" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
-                            </div>
-                        </div>
-                        <div class="flex flex-col w-full">
-                            <h1 class="text-white font-silkscreen">IMAGEM OU GIF</h1>
-                            <div class="flex flex-row gap-4 w-full">
-                                <input type="text" placeholder="link" id="inputGameImg" class="min-w-0 flex-1 border-b border-white font-silkscreen text-white outline-none">
-                                <div class="flex flex-1 items-center rounded text-white relative min-w-[100px] max-w-[170px] group">
-                                    <select id="inputGameImgStyle" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
-                                        <option value="" disabled selected>ESTILO</option>
-                                        <option value="object-fill">PREENCHER</option>
-                                        <option value="object-cover">COBRIR</option>
-                                        <option value="object-fit">CORTAR</option>
-                                        <option value="object-contain">CONTER</option>
-                                    </select>
-                                    <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-focus:rotate-180 transform transition"></i>
+                            <div class="flex flex-col w-full">
+                                <h1 class="text-white font-silkscreen">HORAS & NOTA</h1>
+                                <div class="flex flex-row gap-4 w-full">
+                                    <input type="number" required step="0.1" min="1" max="100000" placeholder="HORAS" id="inputGameHours" class="flex-1 min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                    <div class="flex items-center rounded text-white relative w-[170px] group">
+                                        <select id="inputGameScore" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
+                                            <option value="N/A" disabled selected>NOTA</option>
+                                            <option value="D">D</option>
+                                            <option value="C">C</option>
+                                            <option value="B">B</option>
+                                            <option value="A">A</option>
+                                            <option value="S">S</option>
+                                            <option value="SS">SS</option>
+                                            <option value="SSS">SSS</option>
+                                        </select>
+                                        <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-focus:rotate-180 transform transition"></i>
+                                    </div>
                                 </div>
-                                <div class="flex flex-1 items-center rounded text-white relative min-w-[100px] max-w-[170px] group hidden">
-                                    <select id="inputGameImgPos" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
-                                        <option value="" disabled selected>POS</option>
-                                        <option value="object-left">ESQUERDA</option>
-                                        <option value="object-center">CENTRO</option>
-                                        <option value="object-right">DIRETA</option>
-                                    </select>
-                                    <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-focus:rotate-180 transform transition"></i>
+                            </div>
+                            <div class="flex flex-col w-full">
+                                <div class="flex flex-row w-full items-center gap-2">
+                                    <h1 class="text-white font-silkscreen">FUNDO</h1>
+                                    <span class="border border-transparent w-[24px] h-[24px]" id="previewcardCardMobile"></span>
+                                </div>
+                                <div class="flex flex-row gap-4 w-full">
+                                    <input type="number" max="255" placeholder="RED" id="inputGameRed" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                    <input type="number" max="255" placeholder="GREEN" id="inputGameGreen" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                    <input type="number" max="255" placeholder="BLUE" id="inputGameBlue" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                </div>
+                            </div>
+                            <div class="flex flex-col w-full">
+                                <h1 class="text-white font-silkscreen">IMAGEM OU GIF</h1>
+                                <div class="flex flex-row gap-4 w-full">
+                                    <input type="text" placeholder="link" id="inputGameImg" class="min-w-0 flex-1 border-b border-white font-silkscreen text-white outline-none">
+                                    <div class="flex flex-1 items-center rounded text-white relative min-w-[100px] max-w-[170px] group">
+                                        <select id="inputGameImgStyle" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
+                                            <option value="" disabled selected>ESTILO</option>
+                                            <option value="object-fill">PREENCHER</option>
+                                            <option value="object-cover">COBRIR</option>
+                                            <option value="object-fit">CORTAR</option>
+                                            <option value="object-contain">CONTER</option>
+                                        </select>
+                                        <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-focus:rotate-180 transform transition"></i>
+                                    </div>
+                                    <div class="flex flex-1 items-center rounded text-white relative min-w-[100px] max-w-[170px] group hidden">
+                                        <select id="inputGameImgPos" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
+                                            <option value="" disabled selected>POS</option>
+                                            <option value="object-left">ESQUERDA</option>
+                                            <option value="object-center">CENTRO</option>
+                                            <option value="object-right">DIRETA</option>
+                                        </select>
+                                        <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-focus:rotate-180 transform transition"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col w-full">
+                                <h1 class="text-white font-silkscreen">DESCRIÇÃO</h1>
+                                <div class="flex flex-row gap-4 w-full">
+                                    <textarea placeholder="Digite aqui!" id="inputGameDesc" class="min-w-0 w-full h-[100px] border border-white rounded-lg p-1 font-pixelify-sans text-white resize-none outline-none"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -123,6 +134,8 @@ export function cardEditor(event) {
     document.getElementById('inputGameImg').value = imglink;
     document.getElementById('inputGameImgStyle').value = imgstyle[0];
     document.getElementById('inputGameImgPos').value = imgstyle[1];
+    if (desc == '' || desc == null) desc = '';
+    document.getElementById('inputGameDesc').value = desc;
 
     let inputImgPos = document.getElementById('inputGameImgPos');
     if (imgstyle[0] == 'object-cover' || imgstyle[0] == 'object-contain') inputImgPos.parentElement.classList.remove('hidden'); else inputImgPos.parentElement.classList.add('hidden');
@@ -137,10 +150,10 @@ export function cardEditor(event) {
     document.getElementById('modalCardEditor').showModal();
     document.getElementById('cardEditor').addEventListener('submit', (event) => {
         event.preventDefault();
-        let inputAch = document.getElementById('inputGameAch').value;
-        let inputMaxAch = document.getElementById('inputGameMaxAch').value;
+        let inputAch = Number(document.getElementById('inputGameAch').value);
+        let inputMaxAch = Number(document.getElementById('inputGameMaxAch').value);
         if (inputMaxAch < inputAch) {
-            alert('Maximo de conquistas menor que o alcançado!');
+            alert(`Maximo de conquistas menor que o alcançado! (${inputAch},${inputMaxAch})`);
         } else {
             if (inputMaxAch > 0 && (inputAch < 0 || inputAch == '' || inputAch == null)) {
                 inputAch = 0;
@@ -182,4 +195,5 @@ function saveEdit(cardData) {
     cardData.imglink = document.getElementById('inputGameImg').value;
     cardData.imgstyle = [document.getElementById('inputGameImgStyle').value,document.getElementById('inputGameImgPos').value];
     cardData.background = [document.getElementById('inputGameRed').value,document.getElementById('inputGameGreen').value,document.getElementById('inputGameBlue').value];
+    cardData.desc = document.getElementById('inputGameDesc').value;
 }

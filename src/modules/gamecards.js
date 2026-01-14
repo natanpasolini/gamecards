@@ -3,7 +3,7 @@ import { mouseState } from "../../main.js";
 import { data, refreshData } from "./handlerData.js";
 import { cardEditor } from "./cardEditor.js";
 
-export function buildCard(uid,title,year,achievements,maxachievements,hours,score,imglink,imgstyle,background,golden) {
+export function buildCard(uid,title,year,achievements,maxachievements,hours,score,imglink,imgstyle,background,desc,golden) {
     hours += 'h';
     let textColor = 'white';
     let bgColor = '';
@@ -29,7 +29,7 @@ export function buildCard(uid,title,year,achievements,maxachievements,hours,scor
     
     const dataObj = new Date(uid);
     const dataFormatada = dataObj.toLocaleDateString('pt-BR');
-    
+
     const templateHtml = `
     <div class="flex flex-row justify-center items-center w-full gap-4 ${dropShadow}" id="gamecard" data-uid="${uid}" onclick="cardFunctions(event)">
                 <div class="hover-3d h-full min-h-[400px] w-[320px] md:w-[350px] lg:w-[400px]" id="virarCard">
@@ -51,27 +51,27 @@ export function buildCard(uid,title,year,achievements,maxachievements,hours,scor
                             </div>
                             <div class="flex flex-col justify-center items-center h-full">
                                 <div class="bg-transparent pb-2 w-full flex justify-center items-center h-[60px]">
-                                    <h1 class="text-${textColor} text-center text-xl font-silkscreen line-clamp-2 text-shadow-[2px_2px_4px_rgba(0,0,0,1)]" id="gameTitle">
+                                    <h1 class="text-${textColor} text-center text-xl font-silkscreen line-clamp-2 text-shadow-[2px_2px_4px_rgba(0,0,0,1)] drop-shadow-md/60" id="gameTitle">
                                         ${title}
                                     </h1>
                                 </div>
-                                <div class="grid grid-cols-2 w-full">
-                                    <div class="flex flex-col items-start pt-1 border-2 border-black gap-1 bg-black">
-                                        <div class="flex justify-start items-center pl-2 gap-2">
-                                            <i class="hn hn-trophy-solid text-yellow-300 text-3xl"></i>
-                                            <span class="text-${textColor} leading-none text-3xl font-micro-5 select-none">
+                                <div class="flex flex-row w-full rounded-lg ${bgColor} border-2" ${bgCustom}>
+                                    <div class="flex flex-col flex-1 items-start rounded-lg rounded-r-none">
+                                        <div class="flex justify-start items-center px-2 py-1 gap-2">
+                                            <i class="hn hn-trophy-solid text-gold text-3xl text-shadow-lg/60"></i>
+                                            <span class="text-white leading-none text-3xl font-micro-5 select-none text-shadow-lg/60">
                                                 ${achievements}
                                             </span>
                                         </div>
-                                        <div class="flex justify-start items-center pl-2 gap-2">
-                                            <i class="hn hn-clock text-yellow-300 text-3xl"></i>
-                                            <span class="text-white leading-none text-3xl font-micro-5 select-none">
+                                        <div class="flex justify-start items-center px-2 py-1 gap-2">
+                                            <i class="hn hn-clock text-gold text-3xl text-shadow-lg/60"></i>
+                                            <span class="text-white leading-none text-3xl flex-1 font-micro-5 select-none text-shadow-lg/60">
                                                 ${hours}
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="flex justify-center h-20">
-                                        <div class="p-2 flex justify-center items-center w-full border-2 border-black score-${score}">
+                                    <div class="flex justify-end w-[50%]">
+                                        <div class="p-2 flex flex-1 justify-center items-center border-2 rounded-md score-${score}">
                                             <span class="text-3xl font-pixelify-sans select-none text-shadow-lg/60">
                                                 ${score}
                                             </span>
@@ -83,14 +83,14 @@ export function buildCard(uid,title,year,achievements,maxachievements,hours,scor
                         <div class="card-visible hidden rounded-xl flex flex-col py-6 pb-3 px-4 shadow-md w-[320px] h-full md:w-[350px] lg:w-[400px] max-h-[400px] backdrop-blur-md border ${bgColor}" ${bgCustom} id="versoCard">
                             <h1 class="font-silkscreen text-${textColor} text-shadow-[2px_2px_4px_rgba(0,0,0,1)] truncate">${title}</h1>
                             <div class="w-full flex-1 bg-black/25 border border-black rounded overflow-y-scroll">
-                                <h1 class="font-pixelify-sans p-2 opacity-90">Esta feature está em desenvolvimento!</h1>
+                                <h1 class="font-pixelify-sans p-2 opacity-90 select-none">${desc}</h1>
                             </div>
                             <div class="flex flex-row items-end justify-between w-full min-h-[20%]">
                                 <div class="bg-black/10 rounded px-2">
-                                    <p class="font-silkscreen text-white opacity-25 text-shadow-[2px_2px_4px_rgba(0,0,0,1)]">${dataFormatada}</p>
+                                    <p class="font-silkscreen text-white opacity-25 text-shadow-[2px_2px_4px_rgba(0,0,0,1)] select-none">${dataFormatada}</p>
                                 </div>
                                 <div class="flex flex-col">
-                                    <p class="font-silkscreen text-${textColor} opacity-25 text-shadow-[2px_2px_4px_rgba(0,0,0,1)]">${uid}</p>
+                                    <p class="font-silkscreen text-${textColor} opacity-25 text-shadow-[2px_2px_4px_rgba(0,0,0,1)] select-none">${uid}</p>
                                 </div>
                             </div>
                         </div>
@@ -104,6 +104,7 @@ export function buildCard(uid,title,year,achievements,maxachievements,hours,scor
                     <div></div>
                     <div></div>
                 </div>`;
+
     document.querySelector('#gamelist').insertAdjacentHTML('afterbegin', templateHtml);
 
     document.getElementById('virarCard').addEventListener('click', (event) => {

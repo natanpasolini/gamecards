@@ -4,7 +4,7 @@ import { modalGuiaVisto } from "./modals.js";
 export const data = [
 ];
 
-export function writeToData(t, y, a, ma, h, s, i, iS, rgb) {
+export function writeToData(t, y, a, ma, h, s, i, iS, rgb, d) {
     const uniqueId = Date.now() + 1;
     const newEntry = {
         title: t,
@@ -16,6 +16,7 @@ export function writeToData(t, y, a, ma, h, s, i, iS, rgb) {
         imglink: i,
         imgstyle: iS,
         background: rgb,
+        desc: d,
         uid: uniqueId
     };
 
@@ -39,6 +40,7 @@ function sendCardData(data) {
     const imglink = data[id].imglink;
     const imgstyle = data[id].imgstyle;
     const background = data[id].background;
+    const desc = data[id].desc;
     let golden = false;
     if (Number(achievements) >= 0 && Number(achievements) > 0 && achievements == maxachievements) {
         golden = true;
@@ -50,7 +52,7 @@ function sendCardData(data) {
         document.getElementById('newGameCard').classList.add('hidden');
     };
     saveToLocalStorage();
-    buildCard(uid,title,year,achievements,maxachievements,hours,score,imglink,imgstyle,background,golden);
+    buildCard(uid,title,year,achievements,maxachievements,hours,score,imglink,imgstyle,background,desc,golden);
 };
 
 export function downloadDB() {
@@ -109,6 +111,7 @@ export function uploadDB(event) {
                 if (data[i].background == '' || data[i].background == null) data[i].background = [93, 42, 155];
                 if (data[i].imgstyle == '' || data[i].imgstyle == null) data[i].imgstyle = ['object-fill','object-center'];
                 if (data[i].uid == '' || data[i].uid == null) data[i].uid = uniqueId;
+                if (data[i].desc == null) data[i].desc = 'Adicione uma descrição a este gamecard no modo editar!';
             }
 
             // Cria todos os cards novos
@@ -158,7 +161,8 @@ export function refreshData() {
                 game.score, 
                 game.imglink,
                 game.imgstyle,
-                game.background
+                game.background,
+                game.desc
             );
         });
     } else {
@@ -185,6 +189,7 @@ export function loadFromLocalStorage() {
             if (data[i].background == '' || data[i].background == null) data[i].background = [93, 42, 155];
             if (data[i].imgstyle == '' || data[i].imgstyle == null) data[i].imgstyle = ['object-fill','object-center'];
             if (data[i].uid == '' || data[i].uid == null) data[i].uid = uniqueId;
+            if (data[i].desc == null) data[i].desc = 'Adicione uma descrição a este gamecard no modo editar!';
         }
         
         data.forEach(game => {
@@ -200,7 +205,8 @@ export function loadFromLocalStorage() {
                     game.score,
                     game.imglink,
                     game.imgstyle,
-                    game.background
+                    game.background,
+                    game.desc
                 );
             });
         refreshData();

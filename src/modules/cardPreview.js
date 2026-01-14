@@ -114,6 +114,12 @@ function previewCardChange(title,year,achievements,hours,score,img,rgb) {
     const r = rgb.r;
     const b = rgb.b;
     const g = rgb.g;
+    const previewStatsBG = document.getElementById('previewcardStats');
+
+    const previewDesc = document.getElementById('previewcardDesc');
+    const inputDesc = document.getElementById('inputGameDesc');
+
+    previewDesc.innerHTML = inputDesc.value;
 
     previewTitle.innerHTML = title;
     previewYear.innerHTML = year;
@@ -143,4 +149,6 @@ function previewCardChange(title,year,achievements,hours,score,img,rgb) {
     previewBG.style.borderColor = `rgb(${r},${g},${b})`
     previewBGMobile.style.background = `radial-gradient(circle,rgba(${r}, ${g}, ${b}, 0.7) 0%, rgba(${Math.round(r * 0.4)}, ${Math.round(g * 0.4)}, ${Math.round(b * 0.4)}, 0.7) 100%)`;
     previewBGMobile.style.borderColor = `rgb(${r},${g},${b})`
+    previewStatsBG.style.background = `radial-gradient(circle,rgba(${r}, ${g}, ${b}, 0.7) 0%, rgba(${Math.round(r * 0.4)}, ${Math.round(g * 0.4)}, ${Math.round(b * 0.4)}, 0.7) 100%)`;
+    previewStatsBG.style.borderColor = `rgb(${r},${g},${b})`
 }

@@ -1,5 +1,13 @@
 const patchNotes = [
     {
+        version: '<b>BETA</b> 3.0.0',
+        vs: 'b300',
+        changes: [
+            { type: 'FEATURE', text: '<b>VERSO:</b> Agora os cartões tem um verso, onde pode ser adicionado uma descrição ao gamecard.'},
+            { type: 'UPDATE', text: '<b>GAMECARDS:</b> Novo design frontal dos gamecards.'}
+        ]
+    },
+    {
         version: '<b>BETA</b> 2.4.0',
         vs: 'b240',
         changes: [
