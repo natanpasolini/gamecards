@@ -45,10 +45,12 @@
 
 .score-S {
   background: radial-gradient(circle, #D4AF37 0%, #B8860B 55%, #463500 100%);
+  border-color: #D4AF37;
 }
 
 .score-SS {
   background: radial-gradient(circle, #FF9100 0%, #CC7000 50%, #663300 100%);
+  border-color: #ff9100;
 }
 
 .score-SSS {
