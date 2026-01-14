@@ -6,7 +6,7 @@ import { cardEditor } from "./cardEditor.js";
 export function buildCard(uid,title,year,achievements,maxachievements,hours,score,imglink,imgstyle,background,golden) {
     hours += 'h';
     let textColor = 'white';
-    let bgColor = 'basic';
+    let bgColor = '';
     let dropShadow = '';
     let imgclasses = `${imgstyle[0]} ${imgstyle[1]}`
     let r = background[0];
@@ -22,15 +22,19 @@ export function buildCard(uid,title,year,achievements,maxachievements,hours,scor
     }
     if (golden == true) {
         textColor = 'gold';
-        bgColor = 'gold';
+        bgColor = 'gamecard-bg-gold';
         dropShadow = 'animate-drop-shadow-glow-gold';
     }
     let bgCustom = `style="background: radial-gradient(circle,rgba(${r}, ${g}, ${b}, 0.7) 0%, rgba(${Math.round(r * 0.4)}, ${Math.round(g * 0.4)}, ${Math.round(b * 0.4)}, 0.7) 100%); border-color: rgb(${r},${g},${b});"`
+    
+    const dataObj = new Date(uid);
+    const dataFormatada = dataObj.toLocaleDateString('pt-BR');
+    
     const templateHtml = `
     <div class="flex flex-row justify-center items-center w-full gap-4 ${dropShadow}" id="gamecard" data-uid="${uid}" onclick="cardFunctions(event)">
-                <div class="hover-3d">
+                <div class="hover-3d h-full min-h-[400px] w-[320px] md:w-[350px] lg:w-[400px]" id="virarCard">
                     <figure>
-                        <div class="card-hidden rounded-xl flex flex-col py-6 px-4 shadow-md w-[320px] md:w-[350px] lg:w-[400px] gamecard-bg-${bgColor} backdrop-blur-md border gamecard-border-${bgColor}" ${bgCustom}>
+                        <div class="card-hidden rounded-xl flex flex-col py-6 px-4 h-full shadow-md backdrop-blur-md border ${bgColor}" ${bgCustom} id="frenteCard">
                             <div class="relative">
                                 <div class="min-w-[85px] m-0 rounded flex justify-center items-center absolute -rotate-30 select-none top-1 -left-3">
                                     <span class="text-${textColor} text-2xl leading-none font-silkscreen text-ultra-strong drop-shadow-xl/80">
@@ -76,6 +80,20 @@ export function buildCard(uid,title,year,achievements,maxachievements,hours,scor
                                 </div>
                             </div>
                         </div>
+                        <div class="card-visible hidden rounded-xl flex flex-col py-6 pb-3 px-4 shadow-md w-[320px] h-full md:w-[350px] lg:w-[400px] max-h-[400px] backdrop-blur-md border ${bgColor}" ${bgCustom} id="versoCard">
+                            <h1 class="font-silkscreen text-${textColor} text-shadow-[2px_2px_4px_rgba(0,0,0,1)]">${title}</h1>
+                            <div class="w-full flex-1 bg-black/25 border border-black rounded overflow-y-scroll">
+                                <h1 class="font-pixelify-sans p-2 opacity-90"></h1>
+                            </div>
+                            <div class="flex flex-row items-end justify-between w-full min-h-[20%]">
+                                <div class="bg-black/10 rounded px-2">
+                                    <p class="font-silkscreen text-${textColor} opacity-25 text-shadow-[2px_2px_4px_rgba(0,0,0,1)]">${dataFormatada}</p>
+                                </div>
+                                <div class="flex flex-col">
+                                    <p class="font-silkscreen text-${textColor} opacity-25 text-shadow-[2px_2px_4px_rgba(0,0,0,1)]">${uid}</p>
+                                </div>
+                            </div>
+                        </div>
                     </figure>
                     <div></div>
                     <div></div>
@@ -87,5 +105,11 @@ export function buildCard(uid,title,year,achievements,maxachievements,hours,scor
                     <div></div>
                 </div>`;
     document.querySelector('#gamelist').insertAdjacentHTML('afterbegin', templateHtml);
+    document.getElementById('virarCard').addEventListener('click', (event) => {
+        let versoCard = event.currentTarget.querySelector('#versoCard');
+        let frenteCard = event.currentTarget.querySelector('#frenteCard')
+        if (versoCard.classList.contains('hidden')) { versoCard.classList.toggle('hidden'); frenteCard.classList.toggle('hidden'); }
+        else if (frenteCard.classList.contains('hidden')) { frenteCard.classList.toggle('hidden'); versoCard.classList.toggle('hidden'); }
+    })
     useObserver();
 };

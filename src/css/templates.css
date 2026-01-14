@@ -1,21 +1,18 @@
 .gamecard-bg-purple {
-    background: radial-gradient(circle,rgba(93, 42, 155, 1) 0%, rgba(57, 17, 74, 1) 100%);
+    background: radial-gradient(circle, rgba(93, 42, 155, 1) 0%, rgba(57, 17, 74, 1) 100%);
 }
 
 .gamecard-bg-basic {
-    background: radial-gradient(circle,rgba(93, 42, 155, 0.7) 0%, rgba(57, 17, 74, 0.7) 100%);
+    background: radial-gradient(circle, rgba(93, 42, 155, 0.7) 0%, rgba(57, 17, 74, 0.7) 100%);
 }
 
 .gamecard-bg-gold {
     background: linear-gradient(135deg, #b8860b 0%, #dfbe02 50%, #856404 100%) !important;
+    border-color: #ffd700 !important;
 }
 
 .gamecard-border-basic {
     border-color: rgba(93, 42, 155, 1);
-}
-
-.gamecard-border-gold {
-  border-color: #ffd700 !important;
 }
 
 .text-gold {

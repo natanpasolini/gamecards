@@ -169,6 +169,7 @@ export function cardCreator() {
         let rgb = [document.getElementById('inputGameRed').value,document.getElementById('inputGameGreen').value,document.getElementById('inputGameBlue').value]
         if (ma < a) {
             alert('Maximo de conquistas menor que o alcançado!');
+            console.log(a,ma);
         } else {
             if (ma > 0 && (a < 0 || a == '' || a == null)) {
                 a = 0;

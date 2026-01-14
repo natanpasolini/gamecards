@@ -5,7 +5,7 @@ export const data = [
 ];
 
 export function writeToData(t, y, a, ma, h, s, i, iS, rgb) {
-    const uniqueId = Date.now() + i;
+    const uniqueId = Date.now() + 1;
     const newEntry = {
         title: t,
         year: y,
@@ -103,12 +103,12 @@ export function uploadDB(event) {
             data.length = 0; // Limpa array
             data.push(...importedData); // Adiciona os novos dados
 
-            // Criar UniqueID
+            // Criar chaves novas em saves antigos
             for (let i = 0; i < data.length; i++) {
                 const uniqueId = Date.now() + i;
                 if (data[i].background == '' || data[i].background == null) data[i].background = [93, 42, 155];
                 if (data[i].imgstyle == '' || data[i].imgstyle == null) data[i].imgstyle = ['object-fill','object-center'];
-                data[i].uid = uniqueId;
+                if (data[i].uid == '' || data[i].uid == null) data[i].uid = uniqueId;
             }
 
             // Cria todos os cards novos
@@ -179,14 +179,14 @@ export function loadFromLocalStorage() {
         data.length = 0;
         data.push(...parsedData);
 
-        // Criar UniqueID
+        // Criar chaves novas em saves antigos.
         for (let i = 0; i < data.length; i++) {
             const uniqueId = Date.now() + i;
             if (data[i].background == '' || data[i].background == null) data[i].background = [93, 42, 155];
             if (data[i].imgstyle == '' || data[i].imgstyle == null) data[i].imgstyle = ['object-fill','object-center'];
-            data[i].uid = uniqueId;
+            if (data[i].uid == '' || data[i].uid == null) data[i].uid = uniqueId;
         }
-
+        
         data.forEach(game => {
                 cardsCreated += 1;
                 cardsID += 1;
