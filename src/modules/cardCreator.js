@@ -169,6 +169,7 @@ const cardCreatorHtml = `<dialog class="modal" id="modalCardCreator">
     </dialog>`
 
 export function cardCreator() {
+    if (mouseState != 'default') updateMouseState(mouseState);
     document.body.insertAdjacentHTML('afterbegin', cardCreatorHtml);
 
     document.querySelectorAll('[id*="inputGame"]').forEach(input => {

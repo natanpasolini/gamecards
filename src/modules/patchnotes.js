@@ -1,5 +1,13 @@
 const patchNotes = [
     {
+        version: '<b>BETA</b> 3.0.1',
+        vs: 'b301',
+        changes: [
+            { type: 'BUGFIX', text: '<b>CRIADOR:</b> Cursor não alterando ao entrar no modo criador.'},
+            { type: 'BUGFIX', text: '<b>GAMECARDS:</b> Bordas brancas nas notas S e SS.'}
+        ]
+    },
+    {
         version: '<b>BETA</b> 3.0.0',
         vs: 'b300',
         changes: [
