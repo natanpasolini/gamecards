@@ -6,7 +6,7 @@ const cardCreatorHtml = `<dialog class="modal" id="modalCardCreator">
             <i class="hn hn-window-close-solid text-red-600 absolute top-2 right-2 hover:text-red-800 cursor-pointer" onclick="document.getElementById('modalCardCreator').remove();"></i>
             <div class="flex flex-col gap-2 mb-2">
                 <div class="font-silkscreen text-lg">NOVO JOGO</div>
-                <span class="w-full h-[2px] gamecard-bg-basic rounded-full"></span>
+                <span class="w-full h-[2px] bg-neutral-500 rounded-full"></span>
             </div>
             <div class="flex flex-row justify-center items-center md:gap-4">
                 <div class="hover-3d">
@@ -111,7 +111,6 @@ const cardCreatorHtml = `<dialog class="modal" id="modalCardCreator">
                                 <input type="number" max="255" placeholder="BLUE" id="inputGameBlue" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
                             </div>
                         </div>
-                        
                         <div class="flex flex-col w-full">
                             <h1 class="text-white font-silkscreen">IMAGEM OU GIF</h1>
                             <div class="flex flex-row gap-4 w-full">
@@ -137,6 +136,7 @@ const cardCreatorHtml = `<dialog class="modal" id="modalCardCreator">
                                 </div>
                             </div>
                         </div>
+                        <span class="w-full h-[2px] bg-neutral-500 rounded-full"></span>
                         <div class="flex justify-center items-center flex-1">
                             <input type="submit" value="Criar Card" class="btn gamecard-bg-basic gamecard-border-basic rounded-md p-2 font-silkscreen duration-200 cursor-pointer hover:bg-white hover:text-black hover:scale-105 active:scale-95"></input>
                         </div>

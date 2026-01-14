@@ -28,7 +28,7 @@ export function cardEditor(event) {
             <i class="hn hn-window-close-solid text-red-600 absolute top-2 right-2 hover:text-red-800 cursor-pointer" onclick="document.getElementById('modalCardEditor').remove()"></i>
             <div class="flex flex-col gap-2 mb-2">
                 <div class="font-silkscreen text-lg">EDITOR</div>
-                <span class="w-full h-[2px] gamecard-bg-basic rounded-full"></span>
+                <span class="w-full h-[2px] bg-neutral-500 rounded-full"></span>
             </div>
                 <div class="w-[295px] lg:w-[400px]">
                     <form class="flex flex-col gap-4 h-full" id="cardEditor">
@@ -75,11 +75,31 @@ export function cardEditor(event) {
                             </div>
                         </div>
                         <div class="flex flex-col w-full">
-                            <h1 class="text-white font-silkscreen">IMAGEM</h1>
+                            <h1 class="text-white font-silkscreen">IMAGEM OU GIF</h1>
                             <div class="flex flex-row gap-4 w-full">
-                                <input type="text" placeholder="link da imagem" id="inputGameImg" class="min-w-0 w-full border-b border-white font-silkscreen text-white outline-none">
+                                <input type="text" placeholder="link" id="inputGameImg" class="min-w-0 flex-1 border-b border-white font-silkscreen text-white outline-none">
+                                <div class="flex flex-1 items-center rounded text-white relative min-w-[100px] max-w-[170px] group">
+                                    <select id="inputGameImgStyle" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
+                                        <option value="object-fill" disabled selected>ESTILO</option>
+                                        <option value="object-fill">PREENCHER</option>
+                                        <option value="object-cover">COBRIR</option>
+                                        <option value="object-fit">CORTAR</option>
+                                        <option value="object-contain">CONTER</option>
+                                    </select>
+                                    <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-focus:rotate-180 transform transition"></i>
+                                </div>
+                                <div class="flex flex-1 items-center rounded text-white relative min-w-[100px] max-w-[170px] group hidden">
+                                    <select id="inputGameImgPos" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
+                                        <option value="object-center" disabled selected>POS</option>
+                                        <option value="object-left">ESQUERDA</option>
+                                        <option value="object-center">CENTRO</option>
+                                        <option value="object-right">DIRETA</option>
+                                    </select>
+                                    <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-focus:rotate-180 transform transition"></i>
+                                </div>
                             </div>
                         </div>
+                        <span class="w-full h-[2px] bg-neutral-500 rounded-full"></span>
                         <div class="flex justify-center items-center h-full">
                             <input type="submit" value="Salvar" class="btn gamecard-bg-basic gamecard-border-basic rounded-md p-2 font-silkscreen duration-200 cursor-pointer hover:bg-white hover:text-black hover:scale-105 active:scale-95"></input>
                         </div>
