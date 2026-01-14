@@ -81,13 +81,13 @@ export function buildCard(uid,title,year,achievements,maxachievements,hours,scor
                             </div>
                         </div>
                         <div class="card-visible hidden rounded-xl flex flex-col py-6 pb-3 px-4 shadow-md w-[320px] h-full md:w-[350px] lg:w-[400px] max-h-[400px] backdrop-blur-md border ${bgColor}" ${bgCustom} id="versoCard">
-                            <h1 class="font-silkscreen text-${textColor} text-shadow-[2px_2px_4px_rgba(0,0,0,1)]">${title}</h1>
+                            <h1 class="font-silkscreen text-${textColor} text-shadow-[2px_2px_4px_rgba(0,0,0,1)] truncate">${title}</h1>
                             <div class="w-full flex-1 bg-black/25 border border-black rounded overflow-y-scroll">
-                                <h1 class="font-pixelify-sans p-2 opacity-90"></h1>
+                                <h1 class="font-pixelify-sans p-2 opacity-90">Esta feature está em desenvolvimento!</h1>
                             </div>
                             <div class="flex flex-row items-end justify-between w-full min-h-[20%]">
                                 <div class="bg-black/10 rounded px-2">
-                                    <p class="font-silkscreen text-${textColor} opacity-25 text-shadow-[2px_2px_4px_rgba(0,0,0,1)]">${dataFormatada}</p>
+                                    <p class="font-silkscreen text-white opacity-25 text-shadow-[2px_2px_4px_rgba(0,0,0,1)]">${dataFormatada}</p>
                                 </div>
                                 <div class="flex flex-col">
                                     <p class="font-silkscreen text-${textColor} opacity-25 text-shadow-[2px_2px_4px_rgba(0,0,0,1)]">${uid}</p>
@@ -105,11 +105,14 @@ export function buildCard(uid,title,year,achievements,maxachievements,hours,scor
                     <div></div>
                 </div>`;
     document.querySelector('#gamelist').insertAdjacentHTML('afterbegin', templateHtml);
+
     document.getElementById('virarCard').addEventListener('click', (event) => {
-        let versoCard = event.currentTarget.querySelector('#versoCard');
-        let frenteCard = event.currentTarget.querySelector('#frenteCard')
-        if (versoCard.classList.contains('hidden')) { versoCard.classList.toggle('hidden'); frenteCard.classList.toggle('hidden'); }
-        else if (frenteCard.classList.contains('hidden')) { frenteCard.classList.toggle('hidden'); versoCard.classList.toggle('hidden'); }
+        if (mouseState == 'default') {
+            let versoCard = event.currentTarget.querySelector('#versoCard');
+            let frenteCard = event.currentTarget.querySelector('#frenteCard')
+            if (versoCard.classList.contains('hidden')) { versoCard.classList.toggle('hidden'); frenteCard.classList.toggle('hidden'); }
+            else if (frenteCard.classList.contains('hidden')) { frenteCard.classList.toggle('hidden'); versoCard.classList.toggle('hidden'); }
+        }
     })
     useObserver();
 };
