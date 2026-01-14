@@ -1,5 +1,6 @@
 import { formValueFix, handlePreviewChange } from "./cardPreview.js";
 import { writeToData } from "./handlerData.js";
+import { mouseState } from "../../main.js";
 
 const cardCreatorHtml = `<dialog class="modal" id="modalCardCreator">
         <div class="flex flex-col bg-neutral-800 border border-neutral-700 rounded-lg p-5 relative">
