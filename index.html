@@ -17,7 +17,7 @@
     
     <!-- Sticky toolbar -->
     <navbar>
-        <div class="flex flex-row justify-between items-center p-4 gap-6 w-full sticky top-0 bg-neutral-800 z-10 box-shadow border border-neutral-700">
+        <div class="flex flex-col md:flex-row justify-between items-center p-4 gap-6 w-full sticky top-0 bg-neutral-800 z-10 box-shadow border border-neutral-700">
             <div class="flex justify-start items-center gap-[15px] flex-1">
                 <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" onclick="modalPatchNotes.showModal()">
                     <i class="hn hn-github text-white text-[32px]"></i>
@@ -28,36 +28,36 @@
             </div>
             <div class="flex flex-row gap-2 justify-center gap-[15px] flex-1">
                 <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer group" onclick="cardCreator()">
-                    <i class="hn hn-plus text-white text-[24px] inline-block absolute opacity-100 transition duration-300 group-hover:opacity-0" id="mouseedit"></i>
-                    <i class="hn hn-plus-solid text-white text-[24px] inline-block absolute opacity-0 transition duration-300 group-hover:opacity-100" id="mousedit"></i>
+                    <i class="hn hn-plus text-white text-[24px] inline-block absolute opacity-100 transition duration-300 group-hover:opacity-0"></i>
+                    <i class="hn hn-plus-solid text-white text-[24px] inline-block absolute opacity-0 transition duration-300 group-hover:opacity-100"></i>
                 </div>
                 <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer group" onclick="updateMouseState('trash')">
-                    <i class="hn hn-trash text-white text-[24px] inline-block absolute opacity-100 transition duration-300 group-hover:opacity-0" id="mouseedit"></i>
-                    <i class="hn hn-trash-solid text-white text-[24px] inline-block absolute opacity-0 transition duration-300 group-hover:opacity-100" id="mousedit"></i>
+                    <i class="hn hn-trash text-white text-[24px] inline-block absolute opacity-100 transition duration-300 group-hover:opacity-0" id="mousetrash"></i>
+                    <i class="hn hn-trash-solid text-red-500 text-[24px] inline-block absolute opacity-0 transition duration-300 group-hover:opacity-100" id="mousetrash"></i>
                 </div>
                 <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer group" onclick="updateMouseState('edit')">
                     <i class="hn hn-pencil text-white text-[24px] inline-block absolute opacity-100 transition duration-300 group-hover:opacity-0" id="mouseedit"></i>
-                    <i class="hn hn-pencil-solid text-white text-[24px] inline-block absolute opacity-0 transition duration-300 group-hover:opacity-100" id="mousedit"></i>
+                    <i class="hn hn-pencil-solid text-cyan-500 text-[24px] inline-block absolute opacity-0 transition duration-300 group-hover:opacity-100" id="mousedit"></i>
                 </div>
             </div>
             <div class="flex flex-row justify-end gap-[15px] flex-1">
+                <div class="flex items-center rounded text-white relative w-[100px]">
+                    <select id="year-filter" class="disabled:opacity-20 peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full font-silkscreen">
+                        <option value="all" disabled selected>Ano</option>
+                        <option value="all">Todos</option>
+                    </select>
+                    <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-disabled:opacity-20 peer-focus:rotate-180 transform transition"></i>
+                </div>
+                <div class="flex items-center rounded text-white relative w-[100px]">
+                    <select id="score-filter" class="disabled:opacity-20 peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full font-silkscreen">
+                        <option value="all" disabled selected>Nota</option>
+                        <option value="all">Todas</option>
+                    </select>
+                    <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-disabled:opacity-20 peer-focus:rotate-180 transform transition"></i>
+                </div>
                 <div class="flex items-center justify-center relative rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer group" onclick="modalConfig.showModal()">
                     <i class="inline-block absolute opacity-100 hn hn-cog text-white text-[24px] transition duration-300 group-hover:opacity-0 group-hover:-rotate-90"></i>
                     <i class="inline-block absolute opacity-0 hn hn-cog-solid text-white text-[24px] transition duration-300 group-hover:opacity-100 group-hover:-rotate-90"></i>
-                </div>
-                <div class="flex items-center rounded text-white relative w-[100px] hidden">
-                    <select disabled id="year-filter" class="disabled:opacity-20 peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full font-silkscreen">
-                        <option value="all" disabled selected>Ano</option>
-                        <option value="all">Todos</option>
-                        <option value="2026">2026</option>
-                        <option value="2025">2025</option>
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
-                        <option value="2020">2020</option>
-                    </select>
-                    <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-disabled:opacity-20 peer-focus:rotate-180 transform transition"></i>
                 </div>
             </div>
         </div>

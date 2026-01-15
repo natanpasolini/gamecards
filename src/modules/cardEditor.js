@@ -1,5 +1,5 @@
 import { data, refreshData } from "./handlerData.js";
-import { formValueFix } from "./cardPreview.js";
+import { formValueFix, rgbToHex, hexToRGB } from "./cardPreview.js";
 import { mouseState, updateMouseState } from "../../main.js";
 
 export function cardEditor(event) {
@@ -56,13 +56,13 @@ export function cardEditor(event) {
                                     <div class="flex items-center rounded text-white relative w-[170px] group">
                                         <select id="inputGameScore" class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
                                             <option value="N/A" disabled selected>NOTA</option>
-                                            <option value="D">D</option>
-                                            <option value="C">C</option>
-                                            <option value="B">B</option>
-                                            <option value="A">A</option>
-                                            <option value="S">S</option>
-                                            <option value="SS">SS</option>
                                             <option value="SSS">SSS</option>
+                                            <option value="SS">SS</option>
+                                            <option value="S">S</option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
                                         </select>
                                         <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-focus:rotate-180 transform transition"></i>
                                     </div>
@@ -73,10 +73,25 @@ export function cardEditor(event) {
                                     <h1 class="text-white font-silkscreen">FUNDO</h1>
                                     <span class="border border-transparent w-[24px] h-[24px]" id="previewcardCardMobile"></span>
                                 </div>
-                                <div class="flex flex-row gap-4 w-full">
-                                    <input type="number" max="255" placeholder="RED" id="inputGameRed" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
-                                    <input type="number" max="255" placeholder="GREEN" id="inputGameGreen" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
-                                    <input type="number" max="255" placeholder="BLUE" id="inputGameBlue" class="min-w-0 border-b border-white font-silkscreen text-white outline-none">
+                                <div class="flex flex-row justify-start items-center gap-4 w-full h-[64px]">
+                                    <input type="color" class="min-w-[64px] h-full p-0 m-0 appearance-none bg-transparent cursor-pointer" id="inputGameColor">
+                                    <div class="flex flex-1 flex-row justify-between gap-4 opacity-20">
+                                        <div class="flex flex-col justify-center items-center w-1/2 gap-2 h-full">
+                                            <input disabled type="text" required placeholder="Nome" class="w-full flex-1 border-b border-white font-silkscreen text-white outline-none">
+                                            <button type="button" class="text-[10px] gamecard-bg-basic border gamecard-border-basic rounded-md p-2 font-silkscreen duration-200 cursor-pointer hover:bg-white hover:text-black hover:scale-105 active:scale-95">Salvar</button>
+                                        </div>
+                                        <div class="flex flex-col justify-between items-center w-1/2 gap-2 h-full">
+                                            <div class="flex flex-1 justify-center items-center w-full relative">
+                                                <select disabled class="peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full h-full font-silkscreen">
+                                                    <option selected value="">DEFAULT</option>
+                                                </select>
+                                                <i class="hn hn-chevron-up absolute select-none z-0 right-2 text-[12px] peer-focus:rotate-180 transform transition"></i>
+                                            </div>
+                                            <div class="flex flex-1 justify-center items-center">
+                                                <button type="button" class="text-[10px] gamecard-bg-basic border gamecard-border-basic rounded-md p-2 font-silkscreen duration-200 cursor-pointer hover:bg-white hover:text-black hover:scale-105 active:scale-95">Carregar</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="flex flex-col w-full">
@@ -128,9 +143,10 @@ export function cardEditor(event) {
     document.getElementById('inputGameMaxAch').value = maxach;
     document.getElementById('inputGameHours').value = hours;
     document.getElementById('inputGameScore').value = score;
-    document.getElementById('inputGameRed').value = rgb[0];
-    document.getElementById('inputGameGreen').value = rgb[1];
-    document.getElementById('inputGameBlue').value = rgb[2];
+
+    let hex = rgbToHex(Number(rgb[0]), Number(rgb[1]), Number(rgb[2]));
+    document.getElementById('inputGameColor').value = hex;
+
     document.getElementById('inputGameImg').value = imglink;
     document.getElementById('inputGameImgStyle').value = imgstyle[0];
     document.getElementById('inputGameImgPos').value = imgstyle[1];
@@ -140,10 +156,8 @@ export function cardEditor(event) {
     let inputImgPos = document.getElementById('inputGameImgPos');
     if (imgstyle[0] == 'object-cover' || imgstyle[0] == 'object-contain') inputImgPos.parentElement.classList.remove('hidden'); else inputImgPos.parentElement.classList.add('hidden');
 
-    previewNewColor();
 
     document.querySelectorAll('[id*="inputGame"]').forEach(input => {
-        input.addEventListener('input', previewNewColor);
         input.addEventListener('change', formValueFix);
     });
     
@@ -166,25 +180,6 @@ export function cardEditor(event) {
     });
 };
 
-function previewNewColor() {
-    const previewColor = document.getElementById('previewcardCardMobile');
-
-    let inputRed = document.getElementById('inputGameRed');
-    let inputGreen = document.getElementById('inputGameGreen');
-    let inputBlue = document.getElementById('inputGameBlue');
-    
-    if (inputRed.value > 255) inputRed.value = 255;
-    if (inputGreen.value > 255) inputGreen.value = 255;
-    if (inputBlue.value > 255) inputBlue.value = 255;
-
-    const r = inputRed.value;
-    const g = inputGreen.value;
-    const b = inputBlue.value ;
-
-    previewColor.style.background = `radial-gradient(circle,rgba(${r}, ${g}, ${b}, 0.7) 0%, rgba(${Math.round(r * 0.4)}, ${Math.round(g * 0.4)}, ${Math.round(b * 0.4)}, 0.7) 100%)`;
-    previewColor.style.borderColor = `rgb(${r},${g},${b})`
-}
-
 function saveEdit(cardData) {
     cardData.title = document.getElementById('inputGameTitle').value;
     cardData.year = document.getElementById('inputGameYear').value;
@@ -194,6 +189,9 @@ function saveEdit(cardData) {
     cardData.score = document.getElementById('inputGameScore').value;
     cardData.imglink = document.getElementById('inputGameImg').value;
     cardData.imgstyle = [document.getElementById('inputGameImgStyle').value,document.getElementById('inputGameImgPos').value];
-    cardData.background = [document.getElementById('inputGameRed').value,document.getElementById('inputGameGreen').value,document.getElementById('inputGameBlue').value];
+    
+    let newRGB = hexToRGB(document.getElementById('inputGameColor').value);
+    cardData.background = [newRGB.r,newRGB.g,newRGB.b];
+
     cardData.desc = document.getElementById('inputGameDesc').value;
 }

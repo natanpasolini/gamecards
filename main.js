@@ -1,6 +1,6 @@
 import { injectModals } from './src/modules/modals.js';
 import { downloadDB, uploadDB, loadFromLocalStorage, refreshData, data } from './src/modules/handlerData.js';
-import { handleFilterChange } from './src/modules/cardsfilter.js';
+import { handleFilterChange, refreshFilters } from './src/modules/cardsfilter.js';
 import { attPatches } from './src/modules/patchnotes.js';
 import { cardCreator } from './src/modules/cardCreator.js';
 import { cardEditor } from './src/modules/cardEditor.js';
@@ -58,7 +58,9 @@ function cardFunctions(event) {
 }
 
 /* Filtros */
-document.getElementById('year-filter').addEventListener('change', handleFilterChange);
+document.querySelectorAll("[id*='filter']").forEach(input => {
+    input.addEventListener('change', handleFilterChange);
+});
 
 /* Download e Upload */
 document.getElementById('downloadDB').addEventListener('click', () => {

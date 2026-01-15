@@ -1,5 +1,14 @@
 const patchNotes = [
     {
+        version: '<b>BETA</b> 4.0.0',
+        vs: 'b400',
+        changes: [
+            { type: 'FEATURE', text: '<b>SELETOR DE CORES:</b> Novo seletor de cores para os gamecards.'},
+            { type: 'FEATURE', text: '<b>CONFIGS:</b> Botão de configurações adicionado a toolbar (download e upload agora ficam aqui).'},
+            { type: 'FEATURE', text: '<b>FILTROS:</b> Adicionado filtro de ano e nota.'}
+        ]
+    },
+    {
         version: '<b>BETA</b> 3.0.1',
         vs: 'b301',
         changes: [

@@ -1,3 +1,4 @@
+import { refreshFilters } from "./cardsfilter.js";
 import { buildCard } from "./gamecards.js";
 import { modalGuiaVisto } from "./modals.js";
 
@@ -134,6 +135,8 @@ export function uploadDB(event) {
 }
 
 export function refreshData() {
+    refreshFilters();
+
     // Limpar variaveis
     cardsCreated = 0;
     cardsID = -1;
@@ -192,23 +195,6 @@ export function loadFromLocalStorage() {
             if (data[i].desc == null) data[i].desc = 'Adicione uma descrição a este gamecard no modo editar!';
         }
         
-        data.forEach(game => {
-                cardsCreated += 1;
-                cardsID += 1;
-                buildCard(
-                    game.uid,
-                    game.title, 
-                    game.year, 
-                    game.achievements, 
-                    game.maxachievements, 
-                    game.hours, 
-                    game.score,
-                    game.imglink,
-                    game.imgstyle,
-                    game.background,
-                    game.desc
-                );
-            });
         refreshData();
         return true;
     }

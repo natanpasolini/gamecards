@@ -31,7 +31,7 @@ export function buildCard(uid,title,year,achievements,maxachievements,hours,scor
     const dataFormatada = dataObj.toLocaleDateString('pt-BR');
 
     const templateHtml = `
-    <div class="flex flex-row justify-center items-center w-full gap-4 ${dropShadow}" id="gamecard" data-uid="${uid}" onclick="cardFunctions(event)">
+    <div class="flex flex-row justify-center items-center w-full gap-4 ${dropShadow}" id="gamecard" data-uid="${uid}" data-year="${year}" data-score="${score}" onclick="cardFunctions(event)">
                 <div class="hover-3d h-full min-h-[400px] w-[320px] md:w-[350px] lg:w-[400px]" id="virarCard">
                     <figure>
                         <div class="card-hidden rounded-xl flex flex-col py-6 px-4 h-full shadow-md backdrop-blur-md border ${bgColor}" ${bgCustom} id="frenteCard">

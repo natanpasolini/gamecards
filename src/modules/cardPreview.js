@@ -22,21 +22,10 @@ export const handlePreviewChange = () => {
     let img = document.getElementById('inputGameImg').value;
     if (img == '' || img == null) img = './src/imgs/placeholder.webp';
 
-    const inputRed = document.getElementById('inputGameRed');
-    const inputGreen = document.getElementById('inputGameGreen');
-    const inputBlue = document.getElementById('inputGameBlue');
-    if (inputRed.value > 255) inputRed.value = 255; else if (inputRed.value < 0) inputRed.value = 0;
-    if (inputGreen.value > 255) inputGreen.value = 255; else if (inputGreen.value < 0) inputGreen.value = 0;
-    if (inputBlue.value > 255) inputBlue.value = 255; else if (inputBlue.value < 0) inputBlue.value = 0;
+    let inputColor = document.getElementById('inputGameColor');
 
-    let r = inputRed.value;
-    let g = inputGreen.value;
-    let b = inputBlue.value;
-    if (r == '' || r == null) r = 0;
-    if (g == '' || g == null) g = 0;
-    if (b == '' || b == null) b = 0;
+    const rgb = hexToRGB(inputColor.value);
 
-    const rgb = {r,g,b};
     previewCardChange(title,year,achievements,hours,score,img,rgb);
 }
 
@@ -51,15 +40,9 @@ export function formValueFix() {
     let imgStyle = document.getElementById('inputGameImgStyle').value;
 
     let inputImgPos = document.getElementById('inputGameImgPos');
-    let inputRed = document.getElementById('inputGameRed');
-    let inputGreen = document.getElementById('inputGameGreen');
-    let inputBlue = document.getElementById('inputGameBlue');
-    
-    if (inputRed.value == '' || inputRed.value == null) inputRed.value = 0;
-    if (inputGreen.value == '' || inputGreen.value == null) inputGreen.value = 0;
-    if (inputBlue.value == '' || inputBlue.value == null) inputBlue.value = 0;
+    let inputColor = document.getElementById('inputGameColor');
 
-    const rgb = [inputRed.value,inputGreen.value,inputBlue.value];
+    const rgb = hexToRGB(inputColor.value);
 
     let achievements = '';
     if (!(maxach == '' || maxach == null || maxach == 0)) {
@@ -152,4 +135,29 @@ function previewCardChange(title,year,achievements,hours,score,img,rgb) {
     previewStatsBG.style.borderColor = bordercolor;
     previewVerso.style.background = bgcolor;
     previewVerso.style.borderColor = bordercolor;
+}
+
+export function hexToRGB(hex) {
+  // Remove # if present
+  hex = hex.replace(/^#/, '');
+  
+  // Handle shorthand 3-digit hex (e.g., #f00 → #ff0000)
+  if (hex.length === 3) {
+    hex = hex.split('').map(digit => digit + digit).join('');
+  }
+
+  // Extract R, G, B components and convert from hex to decimal
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+
+  return { r, g, b };
+}
+
+export function rgbToHex(r, g, b) {
+  const componentToHex = (c) => {
+    const hex = c.toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+  };
+  return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
