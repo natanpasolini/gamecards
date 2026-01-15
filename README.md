@@ -36,7 +36,7 @@ Se você quiser editar o código:
 
 1. Clone o repositório:
 ```bash
- git clone https://github.com/natanpasolini/gamelist
+ git clone https://github.com/natanpasolini/gamecards
 ```
 
 1. Instale as dependências:
