@@ -1,50 +1,39 @@
-#### Sobre o Projeto
-Gamelist é uma aplicação web do tipo CRUD voltada ao gerenciamento de uma biblioteca pessoal de jogos. O foco do projeto é usabilidade e experiência visual, permitindo que o usuário crie, edite e organize um inventário de jogos “zerados” por meio de cards interativos e totalmente personalizáveis.
+# 🎮 Gamecards
+
+![GitHub repo size](https://img.shields.io/github/repo-size/natanpasolini/gamecards?style=for-the-badge) ![GitHub language count](https://img.shields.io/github/languages/count/natanpasolini/gamecards?style=for-the-badge)
 
 ![Demonstração do Projeto](./gifs/card-creator.gif)
+> [!NOTE]
+> Gamecards é uma aplicação web do tipo CRUD voltada ao gerenciamento de uma biblioteca pessoal de jogos. O foco do projeto é usabilidade e experiência visual, permitindo que o usuário crie, edite e organize um inventário de jogos “zerados” por meio de cards interativos e personalizáveis.
 
-Teste você mesmo: https://natanpasolini.github.io/gamelist/
+## Tecnologias
 
----
+- [![JS][JS]][JS-url]
+- [![TailwindCSS][TailwindCSS]][TailwindCSS-url]
+- [![Figma][Figma]][Figma-url]
 
-- [Sobre o Projeto](#sobre-o-projeto)
-- [Features](#features)
-  - [Sistema CRUD](#sistema-crud)
-  - [Persistência de Dados](#persistência-de-dados)
-- [Tecnologias](#tecnologias)
-- [Como editar](#como-editar)
+## Features
 
----
+- **Sistema CRUD:** Os gamecards são criados, editados e removidos pelo usuário.
+- **Personalização:** Cada gamecard tem sua própria cor de fundo e imagem definidas pelo usuário.
+- **Filtragem:** O usuário pode filtrar por ano e/ou nota para encontrar jogos em sua lista.
+- **Local Storage:** Os gamecards ficam salvos no navegador.
+- **Portabilidade:** Os dados podem ser exportados/importados como **.json**.
+- **Responsividade:** O app se adapta a telas menores utilizando o TailwindCSS.
 
-#### Features
+## Roadmap
+O projeto ainda está em desenvolvimento e tem as seguintes melhorias planejadas:
 
-##### Sistema CRUD
+- [ ] Novo guia de usuário
+- [ ] Presets para o seletor de cor (criados pelo usuário)
+  - [ ] Importar/Exportar presets
 
-* **Criação de Cards:**
-  * **Informações:** As informações básicas dos cards são: Título, Ano (em que zerou), Conquistas e Horas de jogo.
-  * **Imagem:** O usuário pode definir uma imagem ou gif através de link.
-  * **Fundo Personalizavel:** Através de RGB, o usuário pode definir a cor do fundo de cada card.
-* **Edição/remoção:** O usuário pode editar/remover qualquer card através da toolbar.
+e mais...
 
-##### Persistência de Dados
-* **Local Storage:** O projeto salva automaticamente suas alterações no próprio navegador.
-* **Portabilidade:** Possui funcionalidade de **Exportar/Importar como .json**, permitindo que o usuário faça backup da sua lista ou a transfira entre dispositivos.
+## Como usar
 
----
+Se você quiser editar o código:
 
-#### Tecnologias
-
-| Tecnologia | Descrição |
-| :---: | :--- |
-| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40"> | **HTML5**<br>Responsável pela estruturação semântica da página e organização dos templates de cards. |
-| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40"> | **CSS3**<br>Utilizado para estilização personalizada e refinamento visual dos componentes. |
-| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" width="40"> | **Tailwind CSS**<br>Framework utility-first que garante a rapidez no desenvolvimento e total responsividade da interface. |
-| <img src="https://img.daisyui.com/images/daisyui/mark-rotating.svg" width="40"> | **DaisyUI**<br>Plugin de TailwindCSS utilizado para o efeito 3d dos gamecards. |
-| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="40"> | **JavaScript**<br>Lógica principal do projeto, lidando com a manipulação do DOM, edição e exclusão dinâmica dos cards. |
-
----
-
-#### Como editar
 1. Clone o repositório:
 ```bash
  git clone https://github.com/natanpasolini/gamelist
@@ -74,3 +63,12 @@ Teste você mesmo: https://natanpasolini.github.io/gamelist/
     <img alt="LinkedIn" title="Meu LinkedIn" src="https://custom-icon-badges.demolab.com/badge/LinkedIn-1155ba?style=for-the-badge&logo=in&logoColor=white"/>
   </a>
 </div>
+
+
+<!-- Tecnologias -->
+[JS]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+[JS-url]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript
+[TailwindCSS]: https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white
+[TailwindCSS-url]: https://tailwindcss.com/
+[Figma]: https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white
+[Figma-url]: https://tailwindcss.com/
