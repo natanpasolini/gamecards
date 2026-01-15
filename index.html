@@ -17,7 +17,7 @@
     
     <!-- Sticky toolbar -->
     <navbar>
-        <div class="flex flex-col md:flex-row justify-between items-center p-4 gap-6 w-full sticky top-0 absolute bg-neutral-800 z-10 box-shadow border border-neutral-700">
+        <div class="flex flex-row justify-between items-center p-4 gap-6 w-full sticky top-0 bg-neutral-800 z-10 box-shadow border border-neutral-700">
             <div class="flex justify-start items-center gap-[15px] flex-1">
                 <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" onclick="modalPatchNotes.showModal()">
                     <i class="hn hn-github text-white text-[32px]"></i>
@@ -27,23 +27,23 @@
                 </div>
             </div>
             <div class="flex flex-row gap-2 justify-center gap-[15px] flex-1">
-                <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" onclick="cardCreator()">
-                    <i class="hn hn-plus-solid text-white text-[24px]"></i>
+                <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer group" onclick="cardCreator()">
+                    <i class="hn hn-plus text-white text-[24px] inline-block absolute opacity-100 transition duration-300 group-hover:opacity-0" id="mouseedit"></i>
+                    <i class="hn hn-plus-solid text-white text-[24px] inline-block absolute opacity-0 transition duration-300 group-hover:opacity-100" id="mousedit"></i>
                 </div>
-                <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" onclick="updateMouseState('trash')">
-                    <i class="hn hn-trash-alt-solid text-white text-[24px]" id="mousetrash"></i>
+                <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer group" onclick="updateMouseState('trash')">
+                    <i class="hn hn-trash text-white text-[24px] inline-block absolute opacity-100 transition duration-300 group-hover:opacity-0" id="mouseedit"></i>
+                    <i class="hn hn-trash-solid text-white text-[24px] inline-block absolute opacity-0 transition duration-300 group-hover:opacity-100" id="mousedit"></i>
                 </div>
-                <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" onclick="updateMouseState('edit')">
-                    <i class="hn hn-pencil-solid text-white text-[24px]" id="mouseedit"></i>
+                <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer group" onclick="updateMouseState('edit')">
+                    <i class="hn hn-pencil text-white text-[24px] inline-block absolute opacity-100 transition duration-300 group-hover:opacity-0" id="mouseedit"></i>
+                    <i class="hn hn-pencil-solid text-white text-[24px] inline-block absolute opacity-0 transition duration-300 group-hover:opacity-100" id="mousedit"></i>
                 </div>
             </div>
             <div class="flex flex-row justify-end gap-[15px] flex-1">
-                <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" id="downloadDB">
-                    <i class="hn hn-download-solid text-white text-[24px]"></i>
-                </div>
-                <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer" id="uploadDB">
-                    <i class="hn hn-upload-solid text-white text-[24px]"></i>
-                    <input type="file" id="fileInputHandler" class="hidden" accept=".json">
+                <div class="flex items-center justify-center relative rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer group" onclick="modalConfig.showModal()">
+                    <i class="inline-block absolute opacity-100 hn hn-cog text-white text-[24px] transition duration-300 group-hover:opacity-0 group-hover:-rotate-90"></i>
+                    <i class="inline-block absolute opacity-0 hn hn-cog-solid text-white text-[24px] transition duration-300 group-hover:opacity-100 group-hover:-rotate-90"></i>
                 </div>
                 <div class="flex items-center rounded text-white relative w-[100px] hidden">
                     <select disabled id="year-filter" class="disabled:opacity-20 peer z-1 pl-2 border rounded border-white appearance-none bg-transparent outline-none cursor-pointer w-full font-silkscreen">
@@ -129,6 +129,47 @@
             </div>
         </div>
     </section>
+
+    <!-- Teste modal -->
+     <dialog class="modal outline-none" id="modalConfig">
+        <div class="modal-box relative flex flex-col h-[400px] bg-neutral-800 border border-neutral-700">
+            <i class="hn hn-window-close-solid text-red-600 absolute top-2 right-2 hover:text-red-800 cursor-pointer" onclick="modalConfig.close()"></i>
+            <div class="flex flex-col gap-2 mb-2">
+                <h1 class="font-silkscreen text-lg">CONFIGURAÇÕES</h1>
+                <span class="w-full h-[2px] bg-neutral-500 rounded-full"></span>
+            </div>
+            <div class="flex-1 flex flex-col overflow-y-scroll outline-none gap-2">
+                <div class="flex flex-col">
+                    <h1 class="font-silkscreen text-lg">DADOS</h1>
+                    <div class="flex items-center justify-start rounded-full hover:bg-neutral-700 cursor-pointer px-2 pl-4 gap-4" id="downloadDB">
+                        <i class="hn hn-download-alt-solid text-white text-[24px]"></i>
+                        <div class="flex flex-col">
+                            <h1 class="font-silkscreen">Download</h1>
+                            <p class="font-pixelify-sans text-sm">Clique para fazer download da sua lista de jogos.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-start rounded-full hover:bg-neutral-700 cursor-pointer px-2 pl-4 gap-4" id="uploadDB">
+                        <i class="hn hn-upload-alt-solid text-white text-[24px]"></i>
+                        <input type="file" id="fileInputHandler" class="hidden" accept=".json">
+                        <div class="flex flex-col">
+                            <h1 class="font-silkscreen">Upload</h1>
+                            <p class="font-pixelify-sans text-sm">Clique para fazer upload de uma lista de jogos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span class="w-full h-[2px] bg-neutral-500 rounded-full"></span>
+        </div>
+     </dialog>
+
+    <!-- footer -->
+     <footer>
+        <div class="flex flex-row justify-between items-center p-4 gap-6 w-full bg-neutral-800 z-10 box-shadow border border-neutral-700">
+            <div class="flex justify-center items-center flex-1">
+                <p class="font-silkscreen text-center">© 2026 Natan Pasolini</p>
+            </div>
+        </div>
+     </footer>
 
     <!-- Script principal -->
     <script type="module" src="./main.js"></script>

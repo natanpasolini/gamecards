@@ -76,7 +76,7 @@ document.getElementById('uploadDB').addEventListener('click', () => {
 });
 document.getElementById('fileInputHandler').addEventListener('change', (event) => {
     uploadDB(event);
-})
+});
 
 /* Por ser um module, roda quando carrega a página */
 loadFromLocalStorage();
