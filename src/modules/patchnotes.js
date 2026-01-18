@@ -1,7 +1,14 @@
 const patchNotes = [
     {
+        version: '<b>BETA</b> 4.1.0',
+        vs: 'b410',
+        changes: [
+            { type: 'FEATURE', text: '<b>STEAM IMAGES:</b> Você pode escolher uma imagem da steam através do botão steam.'}
+        ]
+    },
+    {
         version: '<b>BETA</b> 4.0.2',
-        vs: 'b500',
+        vs: 'b402',
         changes: [
             { type: 'BUGFIX', text: '<b>UPLOAD:</b> Corrigido botão de upload.'},
             { type: 'BUGFIX', text: '<b>REMOVER:</b> Alterado remoção de cards de title para uid (estava deletando cards com titulos iguais).'}

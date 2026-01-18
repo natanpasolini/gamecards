@@ -142,8 +142,14 @@ const cardCreatorHtml = `<dialog class="modal" id="modalCardCreator">
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex flex-col w-full">
-                                <h1 class="text-white font-silkscreen">IMAGEM OU GIF</h1>
+                            <div class="flex flex-col w-full gap-2">
+                                <div class="flex flex-row gap-2">
+                                    <h1 class="text-white font-silkscreen">IMAGEM OU GIF</h1>
+                                    <div class="flex flex-row gap-1 justify-center items-center bg-stone-800 rounded-md border border-stone-700 px-1 cursor-pointer hover:scale-105" onclick="findSteamID()">
+                                        <i class="hn hn-steam select-none"></i>
+                                        <p class="font-silkscreen select-none">Steam</p>
+                                    </div>
+                                </div>
                                 <div class="flex flex-row gap-4 w-full">
                                     <input type="text" placeholder="link" id="inputGameImg" class="min-w-0 flex-1 border-b border-white font-silkscreen text-white outline-none">
                                     <div class="flex flex-1 items-center rounded text-white relative min-w-[100px] max-w-[170px] group">

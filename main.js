@@ -1,10 +1,11 @@
 import { injectModals } from './src/modules/modals.js';
 import { downloadDB, uploadDB, loadFromLocalStorage, refreshData, data } from './src/modules/handlerData.js';
-import { handleFilterChange, refreshFilters } from './src/modules/cardsfilter.js';
+import { handleFilterChange } from './src/modules/cardsfilter.js';
 import { attPatches } from './src/modules/patchnotes.js';
 import { cardCreator } from './src/modules/cardCreator.js';
 import { cardEditor } from './src/modules/cardEditor.js';
 import { attConfigs } from './src/modules/configs.js';
+import { findSteamID, chooseImage } from './src/modules/steamid.js';
 
 /* Sem isso não roda as funções */
 window.cardFunctions = cardFunctions;
@@ -13,6 +14,8 @@ window.cardCreator = cardCreator;
 window.cardEditor = cardEditor;
 window.downloadDB = downloadDB;
 window.uploadDB = uploadDB;
+window.findSteamID = findSteamID;
+window.chooseImage = chooseImage;
 
 /* Mousestate */
 export let mouseState = 'default';
