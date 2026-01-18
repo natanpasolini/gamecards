@@ -12,7 +12,7 @@
 <body>
     <!-- Título -->
     <header class="flex justify-center items-center min-h-[200px] w-full bg-stone-900">
-        <h1 class="text-[40px] md:text-[72px] title font-silkscreen text-center">Naga's Gamecards</h1>
+        <h1 class="text-[40px] md:text-[72px] title font-silkscreen text-center">My Gamecards</h1>
     </header>
     
     <!-- Sticky toolbar -->
@@ -52,7 +52,7 @@
                     </select>
                     <i class="hn hn-chevron-up absolute select-none z-0 right-3 text-[12px] peer-disabled:opacity-20 peer-focus:rotate-180 transform transition"></i>
                 </div>
-                <div class="flex items-center justify-center relative rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer group" onclick="modalConfig.showModal()">
+                <div class="flex items-center justify-center relative rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer group" onclick="modalConfigs.showModal()">
                     <i class="inline-block absolute opacity-100 hn hn-cog text-white text-[24px] transition duration-300 group-hover:opacity-0 group-hover:-rotate-90"></i>
                     <i class="inline-block absolute opacity-0 hn hn-cog-solid text-white text-[24px] transition duration-300 group-hover:opacity-100 group-hover:-rotate-90"></i>
                 </div>
@@ -127,47 +127,7 @@
         </div>
     </section>
 
-    <!-- Teste modal -->
-     <dialog class="modal outline-none" id="modalConfig">
-        <div class="modal-box relative flex flex-col h-[400px] bg-neutral-800 border border-neutral-700">
-            <i class="hn hn-window-close-solid text-red-600 absolute top-2 right-2 hover:text-red-800 cursor-pointer" onclick="modalConfig.close()"></i>
-            <div class="flex flex-col gap-2 mb-2">
-                <h1 class="font-silkscreen text-lg">CONFIGURAÇÕES</h1>
-                <span class="w-full h-[2px] bg-neutral-500 rounded-full"></span>
-            </div>
-            <div class="flex-1 flex flex-col overflow-y-scroll outline-none gap-2">
-                <div class="flex flex-col">
-                    <h1 class="font-silkscreen text-lg">DADOS</h1>
-                    <div class="flex items-center justify-start rounded-full hover:bg-neutral-700 cursor-pointer px-2 pl-4 gap-4" id="downloadDB">
-                        <i class="hn hn-download-alt-solid text-white text-[24px]"></i>
-                        <div class="flex flex-col">
-                            <h1 class="font-silkscreen">Download</h1>
-                            <p class="font-pixelify-sans text-sm">Clique para fazer download da sua lista de jogos.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-start rounded-full hover:bg-neutral-700 cursor-pointer px-2 pl-4 gap-4" id="uploadDB">
-                        <i class="hn hn-upload-alt-solid text-white text-[24px]"></i>
-                        <input type="file" id="fileInputHandler" class="hidden" accept=".json">
-                        <div class="flex flex-col">
-                            <h1 class="font-silkscreen">Upload</h1>
-                            <p class="font-pixelify-sans text-sm">Clique para fazer upload de uma lista de jogos.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col">
-                    <h1 class="font-silkscreen text-lg">OUTROS</h1>
-                    <div class="flex items-center justify-start rounded-full hover:bg-neutral-700 cursor-pointer px-2 pl-4 gap-4" onclick="modalPatchNotes.showModal()">
-                        <i class="hn hn-refresh-solid text-white text-[24px]"></i>
-                        <div class="flex flex-col">
-                            <h1 class="font-silkscreen">PATCH notes</h1>
-                            <p class="font-pixelify-sans text-sm">Clique aqui para ver as atualizações.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <span class="w-full h-[2px] bg-neutral-500 rounded-full"></span>
-        </div>
-     </dialog>
+
 
     <!-- footer -->
      <footer>

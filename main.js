@@ -4,14 +4,17 @@ import { handleFilterChange, refreshFilters } from './src/modules/cardsfilter.js
 import { attPatches } from './src/modules/patchnotes.js';
 import { cardCreator } from './src/modules/cardCreator.js';
 import { cardEditor } from './src/modules/cardEditor.js';
+import { attConfigs } from './src/modules/configs.js';
 
 /* Sem isso não roda as funções */
 window.cardFunctions = cardFunctions;
 window.updateMouseState = updateMouseState;
 window.cardCreator = cardCreator;
 window.cardEditor = cardEditor;
+window.downloadDB = downloadDB;
+window.uploadDB = uploadDB;
 
-/* mousestate */
+/* Mousestate */
 export let mouseState = 'default';
 
 export function updateMouseState(type) {
@@ -42,10 +45,10 @@ function cardFunctions(event) {
     const elementoAtivo = event.currentTarget;
     if (mouseState == 'trash') {
         elementoAtivo.remove();
-        const title = elementoAtivo.querySelector('#gameTitle').innerText;
+        const uid = elementoAtivo.dataset.uid;
         let index = -1;
         for (let i = 0; i < data.length; i ++) {
-            if (data[i].title == title) {
+            if (data[i].uid == uid) {
                 index = i;
                 break;
             }
@@ -62,25 +65,8 @@ document.querySelectorAll("[id*='filter']").forEach(input => {
     input.addEventListener('change', handleFilterChange);
 });
 
-/* Download e Upload */
-document.getElementById('downloadDB').addEventListener('click', () => {
-    downloadDB();
-});
-
-let avisoUpload = false;
-document.getElementById('uploadDB').addEventListener('click', () => {
-    if (data.length > 0 && avisoUpload == false) {
-        modalAvisoUpload.showModal();
-        avisoUpload = true;
-    } else {
-        document.getElementById('fileInputHandler').click();
-    }
-});
-document.getElementById('fileInputHandler').addEventListener('change', (event) => {
-    uploadDB(event);
-});
-
 /* Por ser um module, roda quando carrega a página */
 loadFromLocalStorage();
 injectModals();
 attPatches();
+attConfigs();

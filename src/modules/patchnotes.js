@@ -1,5 +1,13 @@
 const patchNotes = [
     {
+        version: '<b>BETA</b> 4.0.2',
+        vs: 'b500',
+        changes: [
+            { type: 'BUGFIX', text: '<b>UPLOAD:</b> Corrigido botão de upload.'},
+            { type: 'BUGFIX', text: '<b>REMOVER:</b> Alterado remoção de cards de title para uid (estava deletando cards com titulos iguais).'}
+        ]
+    },
+    {
         version: '<b>BETA</b> 4.0.1',
         vs: 'b401',
         changes: [
