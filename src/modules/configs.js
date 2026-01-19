@@ -63,16 +63,16 @@ export function attConfigs() {
     const modalConfigsSections = modalConfigs.querySelector('#configsSections');
 
     configsSections.forEach(section => {
-        let configsSection = `<div class="flex flex-col gap-2" data-section="${section}">
+        let configsSection = `<div class="flex flex-col gap-1 p-2" data-section="${section}">
                     <h1 class="font-silkscreen text-lg">${section}</h1>
                 </div>`;
         modalConfigsSections.innerHTML += configsSection;        
     })
 
     configs.forEach(config => {
-        let configsButton = `<div class="flex flex-col border md:border-0 border-bg-neutral-700 md:flex-row items-center justify-start rounded-md md:rounded-full transition duration-300 hover:bg-neutral-700 cursor-pointer p-2 md:pl-4 gap-2 md:gap-4" onclick="${config.action}" id="config${config.id}">
+        let configsButton = `<div class="flex flex-col border md:border-0 border-neutral-700 md:flex-row items-center justify-start rounded-md md:rounded-full transition duration-300 hover:bg-neutral-700 cursor-pointer p-2 md:pl-4 gap-2 md:gap-4" onclick="${config.action}" id="config${config.id}">
                         <i class="hn ${config.icon} text-white text-[24px]"></i>
-                        <div class="flex flex-col">
+                        <div class="flex flex-col items-center md:items-start">
                             <h1 class="font-silkscreen">${config.title}</h1>
                             <p class="font-pixelify-sans text-sm">${config.description}</p>
                             ${config.extraLine}
