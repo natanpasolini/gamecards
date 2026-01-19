@@ -32,7 +32,7 @@ export function changePage(event) {
     let inicial = 0;
     let final = maxCardsPerPage;
     let newdata = data.toReversed();
-    if (pageSelected != 1) inicial = (pageSelected - 1) * maxCardsPerPage, final = inicial * 2;
+    if (pageSelected != 1) inicial = (pageSelected - 1) * maxCardsPerPage, final = inicial + maxCardsPerPage;
 
     if (cardsFiltered.length == 0) {
         if (final > data.length) final = data.length;
