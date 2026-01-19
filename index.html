@@ -34,7 +34,7 @@
                 </div>
                 <div class="flex items-center justify-center rounded-full w-[36px] h-[36px] hover:bg-neutral-700 cursor-pointer group" onclick="updateMouseState('edit')">
                     <i class="hn hn-pencil text-white text-[24px] inline-block absolute opacity-100 transition duration-300 group-hover:opacity-0" id="mouseedit"></i>
-                    <i class="hn hn-pencil-solid text-cyan-500 text-[24px] inline-block absolute opacity-0 transition duration-300 group-hover:opacity-100" id="mousedit"></i>
+                    <i class="hn hn-pencil-solid text-cyan-300 text-[24px] inline-block absolute opacity-0 transition duration-300 group-hover:opacity-100" id="mousedit"></i>
                 </div>
             </div>
             <div class="flex flex-row justify-end gap-[15px] flex-1">
@@ -102,14 +102,15 @@
     </dialog>
     
     <!-- Grid dos gamecards (gamelist) -->
-    <section class="flex justify-center items-start py-10 bg-stone-900" style="min-height: 100vh;">
+    <section class="flex flex-col w-full gap-8 justify-start items-center py-10 bg-stone-900" style="min-height: 100vh;">
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full max-w-[1300px] justify-items-center" id="gamelist">
             <div class="flex flex-row justify-center items-center w-full gap-4" id="newGameCard">
                 <div class="hover-3d">
                     <figure>
                         <div class="w-[295px] h-[295px] md:w-[350px] md:h-[350px] xl:w-[400px] xl:h-[400px] rounded-xl flex flex-col justify-center items-center pt-5 shadow-md backdrop-blur-md border border-neutral-700">
-                            <div class="flex justify-center items-center rounded-full border-neutral-700 bg-neutral-800 p-2" onclick="cardCreator()">
-                                <i class="hn hn-plus-solid text-white text-xl"></i>
+                            <div class="flex relative justify-center items-center w-[36px] h-[36px] rounded-full border-neutral-700 bg-neutral-800 p-2 transition duration-300 cursor-pointer group hover:bg-neutral-700" onclick="cardCreator()">
+                                <i class="hn hn-plus inline-block absolute text-white text-xl transition duration-300 opacity-100 group-hover:opacity-0"></i>
+                                <i class="hn hn-plus-solid inline-block absolute text-white text-xl transition duration-300 opacity-0 group-hover:opacity-100 group-hover:scale-110"></i>
                             </div>
                             <h3 class="font-silkscreen select-none">Novo Jogo</h3>
                         </div>
@@ -124,6 +125,8 @@
                     <div></div>
                 </div>
             </div>
+        </div>
+        <div class="flex flex-row justify-center items-center gap-4" id="gamelistPages">
         </div>
     </section>
 

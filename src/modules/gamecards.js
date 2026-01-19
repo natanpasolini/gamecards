@@ -1,9 +1,7 @@
 import { useObserver } from "./observer.js";
 import { mouseState } from "../../main.js";
-import { data, refreshData } from "./handlerData.js";
-import { cardEditor } from "./cardEditor.js";
 
-export function buildCard(uid,title,year,achievements,maxachievements,hours,score,imglink,imgstyle,background,desc,golden) {
+export function buildCard(uid,title,year,achievements,maxachievements,hours,score,imglink,imgstyle,background,desc) {
     hours += 'h';
     let textColor = 'white';
     let bgColor = '';
@@ -12,6 +10,7 @@ export function buildCard(uid,title,year,achievements,maxachievements,hours,scor
     let r = background[0];
     let g = background[1];
     let b = background[2];
+    let golden = false;
     if (Number(achievements) < 0 || Number(maxachievements) <= 0) {
         achievements = 'N/A';
     } else {

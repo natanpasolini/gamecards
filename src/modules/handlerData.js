@@ -6,7 +6,6 @@ export const data = [
 ];
 
 export function writeToData(t, y, a, ma, h, s, i, iS, rgb, d) {
-    const uniqueId = Date.now() + 1;
     const newEntry = {
         title: t,
         year: y,
@@ -18,42 +17,32 @@ export function writeToData(t, y, a, ma, h, s, i, iS, rgb, d) {
         imgstyle: iS,
         background: rgb,
         desc: d,
-        uid: uniqueId
+        uid: generateUID()
     };
 
     data.push(newEntry);
     
+    saveToLocalStorage();
     sendCardData(data);
 };
 
-let cardsID = -1;
-let cardsCreated = 0;
-
 function sendCardData(data) {
-    const id = cardsID + 1;
-    const uid = data[id].uid;
-    const title = data[id].title;
-    const year = data[id].year;
-    const achievements = data[id].achievements;
-    const maxachievements = data[id].maxachievements;
-    const hours = data[id].hours;
-    const score = data[id].score;
-    const imglink = data[id].imglink;
-    const imgstyle = data[id].imgstyle;
-    const background = data[id].background;
-    const desc = data[id].desc;
-    let golden = false;
-    if (Number(achievements) >= 0 && Number(achievements) > 0 && achievements == maxachievements) {
-        golden = true;
-    }
+    const novoCard = data.at(-1);
+    
+    const title = novoCard.title;
+    const year = novoCard.year;
+    const achievements = novoCard.achievements;
+    const maxachievements = novoCard.maxachievements;
+    const hours = novoCard.hours;
+    const score = novoCard.score;
+    const imglink = novoCard.imglink;
+    const imgstyle = novoCard.imgstyle;
+    const background = novoCard.background;
+    const desc = novoCard.desc;
+    const uid = novoCard.uid;
 
-    cardsCreated += 1;
-    cardsID += 1;
-    if (cardsCreated > 0) {
-        document.getElementById('newGameCard').classList.add('hidden');
-    };
-    saveToLocalStorage();
-    buildCard(uid,title,year,achievements,maxachievements,hours,score,imglink,imgstyle,background,desc,golden);
+    newgameGamecard();
+    buildCard(uid,title,year,achievements,maxachievements,hours,score,imglink,imgstyle,background,desc);
 };
 
 export function downloadDB() {
@@ -98,29 +87,19 @@ export function uploadDB(event) {
             }
 
             // Deleta os cards antigos
-            document.querySelectorAll('[id*="gamecard"]').forEach(card => {
-                card.remove();
-            });
+            removeCards();
             
             // Substituir array
             data.length = 0; // Limpa array
             data.push(...importedData); // Adiciona os novos dados
 
             // Criar chaves novas em saves antigos
-            for (let i = 0; i < data.length; i++) {
-                const uniqueId = Date.now() + i;
-                if (data[i].background == '' || data[i].background == null) data[i].background = [93, 42, 155];
-                if (data[i].imgstyle == '' || data[i].imgstyle == null) data[i].imgstyle = ['object-fill','object-center'];
-                if (data[i].uid == '' || data[i].uid == null) data[i].uid = uniqueId;
-                if (data[i].desc == null) data[i].desc = 'Adicione uma descrição a este gamecard no modo editar!';
-            }
+            normalizeGamecards();
 
             // Cria todos os cards novos
             refreshData();
 
             console.log("Upload concluído com sucesso!");
-            document.getElementById('newGameCard').classList.add('hidden');
-            saveToLocalStorage();
             
             // Resetar input
             fileInput.value = ''; 
@@ -136,22 +115,9 @@ export function uploadDB(event) {
 
 export function refreshData() {
     refreshFilters();
+    removeCards();
 
-    // Limpar variaveis
-    cardsCreated = 0;
-    cardsID = -1;
-
-    document.querySelectorAll('[id*="gamecard"]').forEach(card => {
-        card.remove();
-    });
-
-    // Arruma as variaveis novas
-    for (let i = 0; i < data.length; i++) {
-        cardsCreated += 1;
-        cardsID += 1;
-    }    
-
-    if (cardsCreated > 0) {
+    if (data.length > 0) {
         document.getElementById('newGameCard').classList.add('hidden');
         data.forEach(game => {
             buildCard(
@@ -168,9 +134,9 @@ export function refreshData() {
                 game.desc
             );
         });
-    } else {
-        document.getElementById('newGameCard').classList.remove('hidden');
     };
+
+    newgameGamecard();
     saveToLocalStorage();
 }
 
@@ -187,16 +153,34 @@ export function loadFromLocalStorage() {
         data.push(...parsedData);
 
         // Criar chaves novas em saves antigos.
-        for (let i = 0; i < data.length; i++) {
-            const uniqueId = Date.now() + i;
-            if (data[i].background == '' || data[i].background == null) data[i].background = [93, 42, 155];
-            if (data[i].imgstyle == '' || data[i].imgstyle == null) data[i].imgstyle = ['object-fill','object-center'];
-            if (data[i].uid == '' || data[i].uid == null) data[i].uid = uniqueId;
-            if (data[i].desc == null) data[i].desc = 'Adicione uma descrição a este gamecard no modo editar!';
-        }
+        normalizeGamecards();
         
         refreshData();
         return true;
     }
     return false;
+}
+
+function normalizeGamecards() {
+    if (data.length > 0) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].background == '' || data[i].background == null) data[i].background = [93, 42, 155];
+            if (data[i].imgstyle == '' || data[i].imgstyle == null) data[i].imgstyle = ['object-fill','object-center'];
+            if (data[i].uid == '' || data[i].uid == null) data[i].uid = generateUID();
+            if (data[i].desc == null) data[i].desc = 'Adicione uma descrição a este gamecard no modo editar!';
+        }
+    };
+}
+
+function removeCards() {
+    document.querySelectorAll('[id*="gamecard"]').forEach(card => card.remove());
+}
+
+function newgameGamecard() {
+    const newGameCard = document.getElementById('newGameCard');
+    if (data.length > 0) newGameCard.classList.add('hidden'); else newGameCard.classList.remove('hidden');
+}
+
+function generateUID() {
+    return Math.round(Date.now()+((Math.random())));
 }
