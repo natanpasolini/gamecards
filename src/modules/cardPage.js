@@ -1,12 +1,13 @@
 import { cardsFiltered } from "./cardsfilter.js";
 import { buildCard } from "./gamecards.js";
 import { data, removeCards } from "./handlerData.js";
+import { maxCardsPerPage } from "../../main.js";
 
 export let pageSelected = 1;
 
 export function generatePages() {
-    let pages = Math.ceil(data.length/6)
-    if (cardsFiltered.length > 0) pages = Math.ceil(cardsFiltered.length/6);
+    let pages = Math.ceil(data.length/maxCardsPerPage)
+    if (cardsFiltered.length > 0) pages = Math.ceil(cardsFiltered.length/maxCardsPerPage);
     const gamelistPages = document.getElementById('gamelistPages');
     gamelistPages.innerHTML = ``;
     for (let i = 0; i < pages; i++) {
@@ -27,8 +28,8 @@ export function changePage(event) {
     removeCards();
 
     let inicial = 0;
-    let final = 6;
-    if (pageSelected != 1) inicial = (pageSelected - 1) * 6, final = inicial * 2;
+    let final = maxCardsPerPage;
+    if (pageSelected != 1) inicial = (pageSelected - 1) * maxCardsPerPage, final = inicial * 2;
 
     if (cardsFiltered.length == 0) {
         if (final > data.length) final = data.length;

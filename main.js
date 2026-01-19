@@ -18,6 +18,7 @@ window.uploadDB = uploadDB;
 window.findSteamID = findSteamID;
 window.chooseImage = chooseImage;
 window.changePage = changePage;
+window.refreshMaxCardsPerPage = refreshMaxCardsPerPage;
 
 /* Mousestate */
 export let mouseState = 'default';
@@ -70,8 +71,20 @@ document.querySelectorAll("[id*='filter']").forEach(input => {
     input.addEventListener('change', handleFilterChange);
 });
 
+/* Cards por página */
+export let maxCardsPerPage = 6;
+
+function refreshMaxCardsPerPage(event) {
+    let selected = event.currentTarget;
+    const anterior = document.getElementById('configCardsPerPage').querySelector(`button[data-cardsperpage='${maxCardsPerPage}']`);
+    anterior.classList.remove('bg-neutral-800');
+    selected.classList.add('bg-neutral-800');
+    maxCardsPerPage = selected.dataset.cardsperpage;
+    refreshData();
+}
+
 /* Por ser um module, roda quando carrega a página */
-loadFromLocalStorage();
-injectModals();
 attPatches();
 attConfigs();
+loadFromLocalStorage();
+injectModals();

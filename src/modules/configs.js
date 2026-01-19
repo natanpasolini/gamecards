@@ -5,25 +5,41 @@ const configs = [
         section: 'DADOS',
         title: 'Download',
         description: 'Clique para fazer download da sua lista de jogos.',
+        id: 'Download',
         icon: 'hn-download-alt-solid',
         action: 'downloadDB()',
-        extraLine: ''
+        extraLine: '',
+        extraDiv: ''
     },
     {
         section: 'DADOS',
         title: 'Upload',
         description: 'Clique para fazer upload da sua lista de jogos.',
+        id: 'Upload',
         icon: 'hn-upload-alt-solid',
         action: `document.getElementById('fileInputHandler').click()`,
-        extraLine: `<input type="file" id="fileInputHandler" class="hidden" accept=".json">`
+        extraLine: `<input type="file" id="fileInputHandler" class="hidden" accept=".json">`,
+        extraDiv: ''
     },
     {
         section: 'OUTROS',
         title: 'Patch Notes',
         description: 'Clique para ver as últimas atualizações',
         icon: 'hn-refresh-solid',
+        id: 'PatchNotes',
         action: 'modalPatchNotes.showModal()',
-        extraLine: ''
+        extraLine: '',
+        extraDiv: ''
+    },
+    {
+        section: 'OUTROS',
+        title: 'Cards por página',
+        description: 'Selecione os cards por página:',
+        icon: 'hn-media',
+        id: 'CardsPerPage',
+        action: '',
+        extraLine: '',
+        extraDiv: '<div class="flex flex-1 justify-center items-center font-silkscreen"> <button class="flex justify-center px-1 bg-neutral-700 border border-neutral-600 rounded-l outline-none cursor-pointer hover:bg-neutral-600 active:bg-neutral-800 bg-neutral-800" data-cardsperpage="6" onclick="refreshMaxCardsPerPage(event)">06</button> <button class="flex justify-center px-1 bg-neutral-700 border border-neutral-600 outline-none cursor-pointer hover:bg-neutral-600 active:bg-neutral-800" data-cardsperpage="9" onclick="refreshMaxCardsPerPage(event)">09</button><button class="flex justify-center px-1 bg-neutral-700 border border-neutral-600 outline-none cursor-pointer hover:bg-neutral-600 active:bg-neutral-800" data-cardsperpage="12" onclick="refreshMaxCardsPerPage(event)">12</button> <button class="flex justify-center px-1 bg-neutral-700 border border-neutral-600 rounded-r outline-none cursor-pointer hover:bg-neutral-600 active:bg-neutral-800" data-cardsperpage="30" onclick="refreshMaxCardsPerPage(event)">30</button>   </div>'
     }
 ];
 
@@ -47,20 +63,21 @@ export function attConfigs() {
     const modalConfigsSections = modalConfigs.querySelector('#configsSections');
 
     configsSections.forEach(section => {
-        let configsSection = `<div class="flex flex-col" data-section="${section}">
+        let configsSection = `<div class="flex flex-col gap-2" data-section="${section}">
                     <h1 class="font-silkscreen text-lg">${section}</h1>
                 </div>`;
         modalConfigsSections.innerHTML += configsSection;        
     })
 
     configs.forEach(config => {
-        let configsButton = `<div class="flex items-center justify-start rounded-full transition duration-300 hover:bg-neutral-700 cursor-pointer px-2 pl-4 gap-4" onclick="${config.action}">
+        let configsButton = `<div class="flex flex-col border md:border-0 border-bg-neutral-700 md:flex-row items-center justify-start rounded-md md:rounded-full transition duration-300 hover:bg-neutral-700 cursor-pointer p-2 md:pl-4 gap-2 md:gap-4" onclick="${config.action}" id="config${config.id}">
                         <i class="hn ${config.icon} text-white text-[24px]"></i>
                         <div class="flex flex-col">
                             <h1 class="font-silkscreen">${config.title}</h1>
                             <p class="font-pixelify-sans text-sm">${config.description}</p>
                             ${config.extraLine}
                         </div>
+                        ${config.extraDiv}
                     </div>`;
         let section = modalConfigsSections.querySelector(`[data-section="${config.section}"]`);
         section.innerHTML += configsButton;

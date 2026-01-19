@@ -2,6 +2,7 @@ import { cardsFiltered, refreshFilters } from "./cardsfilter.js";
 import { buildCard } from "./gamecards.js";
 import { modalGuiaVisto } from "./modals.js";
 import { generatePages } from "./cardPage.js";
+import { maxCardsPerPage } from "../../main.js";
 
 export const data = [
 ];
@@ -125,7 +126,9 @@ export function buildCards() {
     removeCards();
     if (data.length > 0) {
         if (cardsFiltered.length == 0) {
-            for (let i = 0; i < 6; i++) {
+            let max = data.length;
+            if (max > maxCardsPerPage) max = maxCardsPerPage;
+            for (let i = 0; i < max; i++) {
                 const game = data[i];
                 buildCard(
                     game.uid,
@@ -144,7 +147,7 @@ export function buildCards() {
         } else {
             console.log(cardsFiltered);
             let max = cardsFiltered.length;
-            if (max > 6) max = 6;
+            if (max > maxCardsPerPage) max = maxCardsPerPage;
             for (let i = 0; i < max; i++) {
                 let card = cardsFiltered[i];
                 data.forEach(game => {
