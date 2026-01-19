@@ -8,6 +8,13 @@ const patchNotes = [
         ]
     },
     {
+        version: '<b>BETA</b> 4.1.0',
+        vs: 'b410',
+        changes: [
+            { type: 'UPDATE', text: '<b>STEAM IMAGES:</b> Você pode escolher uma imagem da steam através do botão steam.'}
+        ]
+    },
+    {
         version: '<b>BETA</b> 4.0.2',
         vs: 'b402',
         changes: [
