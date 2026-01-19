@@ -1,5 +1,5 @@
 import { injectModals } from './src/modules/modals.js';
-import { downloadDB, uploadDB, loadFromLocalStorage, refreshData, data } from './src/modules/handlerData.js';
+import { downloadDB, uploadDB, loadFromLocalStorage, refreshData, data, saveColorPreset, loadPresetColor } from './src/modules/handlerData.js';
 import { handleFilterChange } from './src/modules/cardsfilter.js';
 import { attPatches } from './src/modules/patchnotes.js';
 import { cardCreator } from './src/modules/cardCreator.js';
@@ -19,6 +19,8 @@ window.findSteamID = findSteamID;
 window.chooseImage = chooseImage;
 window.changePage = changePage;
 window.refreshMaxCardsPerPage = refreshMaxCardsPerPage;
+window.saveColorPreset = saveColorPreset;
+window.loadPresetColor = loadPresetColor;
 
 /* Mousestate */
 export let mouseState = 'default';

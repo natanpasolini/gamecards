@@ -3,9 +3,14 @@ import { buildCard } from "./gamecards.js";
 import { modalGuiaVisto } from "./modals.js";
 import { generatePages } from "./cardPage.js";
 import { maxCardsPerPage } from "../../main.js";
+import { handlePreviewChange } from "./cardPreview.js";
 
 export const data = [
 ];
+
+export const presets = {
+    default: '#542989'
+};
 
 export function writeToData(t, y, a, ma, h, s, i, iS, rgb, d) {
     const newEntry = {
@@ -217,4 +222,37 @@ function newgameGamecard() {
 
 function generateUID() {
     return Math.round(Date.now()+((Math.random())));
+}
+
+export function refreshPresets() {
+    document.getElementById('inputGameColorPresetList').innerHTML = '<option selected disabled value="default">PRESETS</option>';
+    Object.keys(presets).forEach(preset => {
+        document.getElementById('inputGameColorPresetList').innerHTML += `<option value="${preset}">${preset}</option>`
+    })
+}
+
+export function saveColorPreset() {
+    const inputGameColor = document.getElementById('inputGameColor');
+    const inputGameColorPresetName = document.getElementById('inputGameColorPresetName');
+    
+    let presetColor = inputGameColor.value;
+    let presetName = inputGameColorPresetName.value;
+
+    if (presetName == '' || presetName == null) alert('Nome vazio ou inválido!');
+    else {
+        presets[presetName] = presetColor;
+        console.log(presets);
+    }
+
+    refreshPresets();
+}
+
+export function loadPresetColor() {
+    const presetList = document.getElementById('inputGameColorPresetList');
+    const inputColor = document.getElementById('inputGameColor');
+
+    const presetSelected = presetList.value;
+    inputColor.value = presets[presetSelected];
+
+    handlePreviewChange();
 }

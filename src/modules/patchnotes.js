@@ -1,5 +1,12 @@
 const patchNotes = [
     {
+        version: '<b>BETA</b> 4.3.0',
+        vs: 'b430',
+        changes: [
+            { type: 'FEATURE', text: '<b>CARDS POR PÁGINAS:</b> É possivel escolher a quantidade de cards por página no menu de configurações'},
+        ]
+    },
+    {
         version: '<b>BETA</b> 4.2.0',
         vs: 'b420',
         changes: [
