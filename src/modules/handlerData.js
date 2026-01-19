@@ -1,7 +1,7 @@
 import { cardsFiltered, refreshFilters } from "./cardsfilter.js";
 import { buildCard } from "./gamecards.js";
 import { modalGuiaVisto } from "./modals.js";
-import { generatePages } from "./cardPage.js";
+import { generatePages, totalPages } from "./cardPage.js";
 import { maxCardsPerPage } from "../../main.js";
 import { handlePreviewChange } from "./cardPreview.js";
 
@@ -129,12 +129,14 @@ export function refreshData() {
 
 export function buildCards() {
     removeCards();
+    generatePages();
+    let newdata = data.toReversed();
     if (data.length > 0) {
         if (cardsFiltered.length == 0) {
-            let max = data.length;
-            if (max > maxCardsPerPage) max = maxCardsPerPage;
-            for (let i = 0; i < max; i++) {
-                const game = data[i];
+            let final = maxCardsPerPage;
+            if (final > data.length) final = data.length;
+            for (let i = final - 1; i >= 0; i--) {
+                const game = newdata[i];
                 buildCard(
                     game.uid,
                     game.title, 
@@ -150,14 +152,13 @@ export function buildCards() {
                 );
             }
         } else {
-            console.log(cardsFiltered);
-            let max = cardsFiltered.length;
-            if (max > maxCardsPerPage) max = maxCardsPerPage;
-            for (let i = 0; i < max; i++) {
-                let card = cardsFiltered[i];
-                data.forEach(game => {
+            let newFiltered = cardsFiltered.toReversed();
+            let final = maxCardsPerPage;
+            if (final > data.length) final = data.length;
+            for (let i = final - 1; i >= 0; i--) {
+                let card = newFiltered[i];
+                newdata.forEach(game => {
                     if (game.uid == card) {
-                        console.log(game.uid, card);
                         buildCard(
                             game.uid,
                             game.title, 
@@ -176,7 +177,6 @@ export function buildCards() {
             };
         };
     };
-    generatePages();
 }
 
 function saveToLocalStorage() {
