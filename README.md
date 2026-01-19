@@ -1,13 +1,14 @@
 # 🎮 Gamecards
 
-![GitHub repo size](https://img.shields.io/badge/beta-4.1.0-blue?style=for-the-badge) ![GitHub language count](https://img.shields.io/github/languages/count/natanpasolini/gamecards?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/badge/beta-4.2.0-blue?style=for-the-badge) ![GitHub language count](https://img.shields.io/github/languages/count/natanpasolini/gamecards?style=for-the-badge)
 
 ![Demonstração do Projeto](./gifs/card-creator.gif)
 > [!NOTE]
 > Gamecards é uma aplicação web do tipo CRUD voltada ao gerenciamento de uma biblioteca pessoal de jogos. O foco do projeto é usabilidade e experiência visual, permitindo que o usuário crie, edite e organize um inventário de jogos “zerados” por meio de cards interativos e personalizáveis.
 
 ## Tecnologias
-
+- [![HTML][HTML]][HTML-url]
+- [![CSS][CSS]][CSS-url]
 - [![JS][JS]][JS-url]
 - [![TailwindCSS][TailwindCSS]][TailwindCSS-url]
 - [![Figma][Figma]][Figma-url]
@@ -24,8 +25,10 @@
 ## Roadmap
 O projeto ainda está em desenvolvimento e tem as seguintes melhorias planejadas:
 
-- [ ] Novo guia de usuário;
+- [x] Novo guia de usuário;
 - [x] Busca de imagem de jogo através da API da steam;
+- [x] Otimização dos gamecards;
+- [ ] Menu "hamburguer" para mobile
 - [ ] Presets para o seletor de cor (criados pelo usuário);
   - [ ] Importar/Exportar presets.
 
@@ -67,6 +70,10 @@ Se você quiser editar o código:
 
 
 <!-- Tecnologias -->
+[HTML]: https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
+[HTML-url]: https://developer.mozilla.org/en-US/docs/Web/HTML
+[CSS]: https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS&logoColor=white
+[CSS-url]: https://developer.mozilla.org/en-US/docs/Web/CSS
 [JS]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
 [JS-url]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript
 [TailwindCSS]: https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white

@@ -1,9 +1,9 @@
-import { useObserver } from "./observer.js";
-import { data } from "./handlerData.js";
+import { data, buildCards } from "./handlerData.js";
+import { removeCards } from "./handlerData.js";
 
 let filters = {
     years: [],
-    scores: ['SSS', 'SS', 'S', 'A', 'B', 'C', 'D']
+    scores: []
 };
 
 export function refreshFilters() {
@@ -14,8 +14,10 @@ export function refreshFilters() {
 
     for (let i = 0; i < data.length; i++) {
         if (!years.includes(data[i].year)) years.push(data[i].year);
+        if (!scores.includes(data[i].score)) scores.push(data[i].score);
     };
     years.sort(function(a, b){return b - a});
+    scores.sort().reverse();
 
     yearFilter.innerHTML = `<option value="all" disabled selected>Ano</option><option value="all">Todos</option>`
     for (let i = 0; i < years.length; i++) {
@@ -30,26 +32,31 @@ export function refreshFilters() {
     }
 };
 
-function filterCards(yearF,scoreF) {
-    const years = filters.years;
-    const scores = filters.scores;
+export let cardsFiltered = [];
 
-    document.querySelectorAll("#gamecard").forEach(card => {
-        card.classList.remove('hidden');
-    });
+function filterCards(yearF,scoreF) {
+    const cardsFiltering = [];
+    cardsFiltered = [];
+
+    removeCards();
 
     if (yearF != 'all') {
-        document.querySelectorAll("#gamecard").forEach(card => {
-            let cardYear = card.dataset.year;
-            if (cardYear != yearF) card.classList.add('hidden'); else card.classList.remove('hidden');
-        });
-    };
-    if (scoreF != 'all') {
-        document.querySelectorAll("#gamecard").forEach(card => {
-            let cardScore = card.dataset.score;
-            if (cardScore != scoreF) card.classList.add('hidden');
-        });
+        data.forEach(game => {
+            if (game.year == yearF) cardsFiltering.push(game.uid);
+        })
+    } else {
+        data.forEach(game => cardsFiltering.push(game.uid));
     }
+    
+    if (scoreF != 'all') {
+        cardsFiltering.forEach(card => {
+            data.forEach(game => {
+                if (game.uid == card && game.score == scoreF) cardsFiltered.push(card);
+            })
+        })
+    } else cardsFiltered = cardsFiltering;
+
+    buildCards();
 };
 
 export const handleFilterChange = () => {

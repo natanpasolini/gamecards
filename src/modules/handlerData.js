@@ -1,6 +1,7 @@
-import { refreshFilters } from "./cardsfilter.js";
+import { cardsFiltered, refreshFilters } from "./cardsfilter.js";
 import { buildCard } from "./gamecards.js";
 import { modalGuiaVisto } from "./modals.js";
+import { generatePages } from "./cardPage.js";
 
 export const data = [
 ];
@@ -115,29 +116,59 @@ export function uploadDB(event) {
 
 export function refreshData() {
     refreshFilters();
-    removeCards();
-
-    if (data.length > 0) {
-        document.getElementById('newGameCard').classList.add('hidden');
-        data.forEach(game => {
-            buildCard(
-                game.uid,
-                game.title, 
-                game.year, 
-                game.achievements, 
-                game.maxachievements, 
-                game.hours, 
-                game.score, 
-                game.imglink,
-                game.imgstyle,
-                game.background,
-                game.desc
-            );
-        });
-    };
-
+    buildCards();
     newgameGamecard();
     saveToLocalStorage();
+}
+
+export function buildCards() {
+    removeCards();
+    if (data.length > 0) {
+        if (cardsFiltered.length == 0) {
+            for (let i = 0; i < 6; i++) {
+                const game = data[i];
+                buildCard(
+                    game.uid,
+                    game.title, 
+                    game.year, 
+                    game.achievements, 
+                    game.maxachievements, 
+                    game.hours, 
+                    game.score, 
+                    game.imglink,
+                    game.imgstyle,
+                    game.background,
+                    game.desc
+                );
+            }
+        } else {
+            console.log(cardsFiltered);
+            let max = cardsFiltered.length;
+            if (max > 6) max = 6;
+            for (let i = 0; i < max; i++) {
+                let card = cardsFiltered[i];
+                data.forEach(game => {
+                    if (game.uid == card) {
+                        console.log(game.uid, card);
+                        buildCard(
+                            game.uid,
+                            game.title, 
+                            game.year, 
+                            game.achievements, 
+                            game.maxachievements, 
+                            game.hours, 
+                            game.score, 
+                            game.imglink,
+                            game.imgstyle,
+                            game.background,
+                            game.desc
+                        );
+                    }
+                })
+            };
+        };
+    };
+    generatePages();
 }
 
 function saveToLocalStorage() {
@@ -172,7 +203,7 @@ function normalizeGamecards() {
     };
 }
 
-function removeCards() {
+export function removeCards() {
     document.querySelectorAll('[id*="gamecard"]').forEach(card => card.remove());
 }
 

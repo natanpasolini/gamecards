@@ -6,6 +6,7 @@ import { cardCreator } from './src/modules/cardCreator.js';
 import { cardEditor } from './src/modules/cardEditor.js';
 import { attConfigs } from './src/modules/configs.js';
 import { findSteamID, chooseImage } from './src/modules/steamid.js';
+import { pageSelected, changePage } from './src/modules/cardPage.js';
 
 /* Sem isso não roda as funções */
 window.cardFunctions = cardFunctions;
@@ -16,6 +17,7 @@ window.downloadDB = downloadDB;
 window.uploadDB = uploadDB;
 window.findSteamID = findSteamID;
 window.chooseImage = chooseImage;
+window.changePage = changePage;
 
 /* Mousestate */
 export let mouseState = 'default';

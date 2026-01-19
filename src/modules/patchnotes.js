@@ -1,9 +1,10 @@
 const patchNotes = [
     {
-        version: '<b>BETA</b> 4.1.0',
-        vs: 'b410',
+        version: '<b>BETA</b> 4.2.0',
+        vs: 'b420',
         changes: [
-            { type: 'FEATURE', text: '<b>STEAM IMAGES:</b> Você pode escolher uma imagem da steam através do botão steam.'}
+            { type: 'UPDATE', text: '<b>OTIMIZAÇÃO:</b> Os cards agoram aparecem em até no máximo 6 por página (e os não visiveis são excluidos do html).'},
+            { type: 'UPDATE', text: '<b>GUIA:</b> Guia simplificado e adicionado gif de demonstração.'}
         ]
     },
     {
