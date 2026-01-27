@@ -138,15 +138,14 @@ function previewCardChange(title,year,achievements,hours,score,img,rgb) {
 }
 
 export function hexToRGB(hex) {
-  // Remove # if present
+  // Remover #
   hex = hex.replace(/^#/, '');
   
-  // Handle shorthand 3-digit hex (e.g., #f00 → #ff0000)
   if (hex.length === 3) {
     hex = hex.split('').map(digit => digit + digit).join('');
   }
 
-  // Extract R, G, B components and convert from hex to decimal
+  // Extraindo R, G, B convertendo hex para decimal
   const r = parseInt(hex.slice(0, 2), 16);
   const g = parseInt(hex.slice(2, 4), 16);
   const b = parseInt(hex.slice(4, 6), 16);

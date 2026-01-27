@@ -6,7 +6,8 @@ import { cardCreator } from './src/modules/cardCreator.js';
 import { cardEditor } from './src/modules/cardEditor.js';
 import { attConfigs } from './src/modules/configs.js';
 import { findSteamID, chooseImage } from './src/modules/steamid.js';
-import { pageSelected, changePage } from './src/modules/cardPage.js';
+import { changePage } from './src/modules/cardPage.js';
+import { loadMyPresets, deletePreset } from './src/modules/myPresets.js';
 
 /* Sem isso não roda as funções */
 window.cardFunctions = cardFunctions;
@@ -23,6 +24,8 @@ window.refreshMaxCardsPerPage = refreshMaxCardsPerPage;
 window.saveColorPreset = saveColorPreset;
 window.loadColorPreset = loadColorPreset;
 window.showHamburguer = showHamburguer;
+window.deletePreset = deletePreset;
+window.loadMyPresets = loadMyPresets;
 
 /* Mousestate */
 export let mouseState = 'default';

@@ -19,7 +19,7 @@ const configs = [
         icon: 'hn-edit-solid',
         action: ``,
         extraLine: ``,
-        extraDiv: `<div class="flex flex-1 justify-center items-center font-silkscreen h-full"> <button class="flex justify-center p-1 bg-neutral-700 border border-neutral-600 rounded-l outline-none cursor-pointer hover:bg-neutral-600 bg-neutral-800" onclick="downloadData('presets')"><i class="hn hn-download-alt-solid"></i></button> <button class="flex justify-center p-1 bg-neutral-700 border border-neutral-600 rounded-r outline-none cursor-pointer hover:bg-neutral-600 bg-neutral-800" onclick="document.getElementById('presetsFileInputHandler').click()"><i class="hn hn-upload-alt-solid"></i> <input type="file" id="presetsFileInputHandler" class="hidden" accept=".json"></button> </div>`
+        extraDiv: `<div class="flex flex-1 justify-center items-center font-silkscreen h-full"> <button class="flex justify-center p-1 bg-neutral-700 border border-neutral-600 rounded-l outline-none cursor-pointer hover:bg-neutral-600 bg-neutral-800" onclick="downloadData('presets')"><i class="hn hn-download-alt-solid"></i></button> <button class="flex justify-center p-1 bg-neutral-700 border border-neutral-600 rounded-r outline-none cursor-pointer hover:bg-neutral-600 bg-neutral-800" onclick="document.getElementById('presetsFileInputHandler').click()"><i class="hn hn-upload-alt-solid"></i> <input type="file" id="presetsFileInputHandler" class="hidden" accept=".json"></button> <button class="flex justify-center p-1 bg-neutral-700 border border-neutral-600 rounded-l outline-none cursor-pointer hover:bg-neutral-600 bg-neutral-800" onclick="loadMyPresets()"><i class="hn hn-pencil-solid"></i></button> </div>`
     },
     {
         section: 'OUTROS',

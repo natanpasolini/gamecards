@@ -1,5 +1,14 @@
 const patchNotes = [
     {
+        version: '<b>RELEASE</b> 1.0.0',
+        vs: '100',
+        changes: [
+            { type: 'FEATURE', text: '<b>MOBILE:</b> Menu hamburguer para configs/guia.'},
+            { type: 'FEATURE', text: '<b>PRESETS:</b> É possivel fazer download, upload e deletar seus presets'},
+            { type: 'UPDATE', text: '<b>CONFIGS:</b> Alterado opções na seção dados; Patch Notes agora é a ultima opção em outros.'}
+        ]
+    },
+    {
         version: '<b>BETA</b> 4.3.0',
         vs: 'b430',
         changes: [
